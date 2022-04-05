@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ConsoleApp
+namespace Algorithms
 {
     public class SudokuSolve
     {

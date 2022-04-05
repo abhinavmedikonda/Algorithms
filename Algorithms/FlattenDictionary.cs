@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ConsoleApp
+namespace Algorithms
 {
     public class FlattenDictionary
     {

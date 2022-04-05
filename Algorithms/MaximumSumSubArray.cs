@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ConsoleApp
+namespace Algorithms
 {
     //positive numbers maximum sum
     public class MaximumSumSubArray
