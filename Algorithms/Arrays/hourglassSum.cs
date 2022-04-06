@@ -45,10 +45,6 @@ namespace Algorithms.Arrays
             return sum;
         }
 
-    }
-
-    class Solution
-    {
         public static void Main(string[] args)
         {
             List<List<int>> arr = new List<List<int>> {
@@ -70,5 +66,6 @@ namespace Algorithms.Arrays
             Console.WriteLine(result);
             Console.Read();
         }
+
     }
 }

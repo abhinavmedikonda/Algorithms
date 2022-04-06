@@ -7,8 +7,10 @@
 
   <ItemGroup>
     <None Remove="Arrays\" />
+    <None Remove="Time\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Arrays\" />
+    <Folder Include="Time\" />
   </ItemGroup>
 </Project>
