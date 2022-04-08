@@ -8,9 +8,19 @@
   <ItemGroup>
     <None Remove="Arrays\" />
     <None Remove="Time\" />
+    <None Remove="Sort\" />
+    <None Remove="Matrix\" />
+    <None Remove="Char\" />
+    <None Remove="Strings\" />
+    <None Remove="Recursion\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Arrays\" />
     <Folder Include="Time\" />
+    <Folder Include="Sort\" />
+    <Folder Include="Matrix\" />
+    <Folder Include="Char\" />
+    <Folder Include="Strings\" />
+    <Folder Include="Recursion\" />
   </ItemGroup>
 </Project>
