@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.Arrays
+namespace Algorithms.Matrix
 {
     public class DiagonalDifference
     {
@@ -21,7 +21,7 @@ namespace Algorithms.Arrays
                 diag2 += arr[i][arr.Count - 1 - i];
             }
 
-            return diag1 > diag2 ? diag1 - diag2 : diag2 - diag1;
+            return Math.Abs(diag1 - diag2);
         }
 
         //public static void Main(string[] args)

@@ -13,6 +13,8 @@
     <None Remove="Char\" />
     <None Remove="Strings\" />
     <None Remove="Recursion\" />
+    <None Remove="Loops\" />
+    <None Remove="LinkedList\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Arrays\" />
@@ -22,5 +24,7 @@
     <Folder Include="Char\" />
     <Folder Include="Strings\" />
     <Folder Include="Recursion\" />
+    <Folder Include="Loops\" />
+    <Folder Include="LinkedList\" />
   </ItemGroup>
 </Project>

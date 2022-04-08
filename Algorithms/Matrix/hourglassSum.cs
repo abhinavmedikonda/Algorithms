@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Algorithms.Arrays
+namespace Algorithms.Matrix
 {
     public class HourglassSum
     {
