@@ -15,6 +15,9 @@
     <None Remove="Recursion\" />
     <None Remove="Loops\" />
     <None Remove="LinkedList\" />
+    <None Remove="Switch\" />
+    <None Remove="StringBuilder\" />
+    <None Remove="Graph\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Arrays\" />
@@ -26,5 +29,8 @@
     <Folder Include="Recursion\" />
     <Folder Include="Loops\" />
     <Folder Include="LinkedList\" />
+    <Folder Include="Switch\" />
+    <Folder Include="stringBuilder\" />
+    <Folder Include="Graph\" />
   </ItemGroup>
 </Project>

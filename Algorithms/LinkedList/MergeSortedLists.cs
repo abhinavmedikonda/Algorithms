@@ -63,7 +63,7 @@ namespace Algorithms.LinkedList
         /*
          *
          */
-        static SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2)
+        static SinglyLinkedListNode mergeSortedLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2)
         {
             SinglyLinkedListNode result;
             SinglyLinkedListNode buffer = head1;
@@ -109,39 +109,39 @@ namespace Algorithms.LinkedList
             return result;
         }
 
-        static void Main(string[] args)
-        {
-            int tests = Convert.ToInt32(Console.ReadLine());
+        //static void Main(string[] args)
+        //{
+        //    int tests = Convert.ToInt32(Console.ReadLine());
 
-            for (int testsItr = 0; testsItr < tests; testsItr++)
-            {
-                SinglyLinkedList llist1 = new SinglyLinkedList();
+        //    for (int testsItr = 0; testsItr < tests; testsItr++)
+        //    {
+        //        SinglyLinkedList llist1 = new SinglyLinkedList();
 
-                int llist1Count = Convert.ToInt32(Console.ReadLine());
+        //        int llist1Count = Convert.ToInt32(Console.ReadLine());
 
-                for (int i = 0; i < llist1Count; i++)
-                {
-                    int llist1Item = Convert.ToInt32(Console.ReadLine());
-                    llist1.InsertNode(llist1Item);
-                }
+        //        for (int i = 0; i < llist1Count; i++)
+        //        {
+        //            int llist1Item = Convert.ToInt32(Console.ReadLine());
+        //            llist1.InsertNode(llist1Item);
+        //        }
 
-                SinglyLinkedList llist2 = new SinglyLinkedList();
+        //        SinglyLinkedList llist2 = new SinglyLinkedList();
 
-                int llist2Count = Convert.ToInt32(Console.ReadLine());
+        //        int llist2Count = Convert.ToInt32(Console.ReadLine());
 
-                for (int i = 0; i < llist2Count; i++)
-                {
-                    int llist2Item = Convert.ToInt32(Console.ReadLine());
-                    llist2.InsertNode(llist2Item);
-                }
+        //        for (int i = 0; i < llist2Count; i++)
+        //        {
+        //            int llist2Item = Convert.ToInt32(Console.ReadLine());
+        //            llist2.InsertNode(llist2Item);
+        //        }
 
-                SinglyLinkedListNode llist3 = mergeLists(llist1.head, llist2.head);
+        //        SinglyLinkedListNode llist3 = mergeSortedLists(llist1.head, llist2.head);
 
-                PrintSinglyLinkedList(llist3, " ");
-                Console.WriteLine();
-            }
+        //        PrintSinglyLinkedList(llist3, " ");
+        //        Console.WriteLine();
+        //    }
 
-            Console.Read();
-        }
+        //    Console.Read();
+        //}
     }
 }
