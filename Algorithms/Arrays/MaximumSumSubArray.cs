@@ -1,5 +1,4 @@
-﻿using System;
-namespace Algorithms
+﻿namespace Algorithms.Arrays
 {
     //positive numbers maximum sum
     public class MaximumSumSubArray

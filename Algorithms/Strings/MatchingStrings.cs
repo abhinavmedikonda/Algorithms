@@ -13,6 +13,11 @@ namespace Algorithms.Strings
 
         public static List<int> matchingStrings(List<string> strings, List<string> queries)
         {
+            //sorting ascending
+            strings.Sort((a, b) => string.Compare(a, b, StringComparison.OrdinalIgnoreCase));
+            //sorting decending
+            strings.Sort((a, b) => string.Compare(b, a, StringComparison.OrdinalIgnoreCase));
+
             int[] result = new int[queries.Count];
             Dictionary<string, int> hash = new Dictionary<string, int>();
 
