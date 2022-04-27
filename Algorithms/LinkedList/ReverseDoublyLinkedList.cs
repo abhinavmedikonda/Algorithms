@@ -98,13 +98,15 @@ namespace Algorithms.LinkedList
             return left;
         }
 
-//1
-//5
-//1
-//2
-//3
-//4
-//5
+/*
+1
+5
+1
+2
+3
+4
+5
+*/
 
         //static void Main(string[] args)
         //{

@@ -49,6 +49,13 @@ namespace Algorithms.Switch
             return stack.Count == 0 ? "YES" : "NO";
         }
 
+/*
+3
+{(([])[])[]}
+{(([])[])[]]}
+{(([])[])[]}[]
+*/
+
         //public static void Main(string[] args)
         //{
         //    int t = Convert.ToInt32(Console.ReadLine().Trim());

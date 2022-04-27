@@ -36,6 +36,12 @@ namespace Algorithms.Char
             return sb.ToString();
         }
 
+/*
+11
+middle-Outz
+2
+*/
+
         //public static void Main(string[] args)
         //{
         //    int n = Convert.ToInt32(Console.ReadLine().Trim());

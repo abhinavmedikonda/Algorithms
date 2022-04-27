@@ -30,6 +30,10 @@ namespace Algorithms.Time
             return $"{12 + Convert.ToInt32(s.Substring(0, 2))}{s.Substring(2, 6)}";
         }
 
+/*
+07:05:45PM
+*/
+
         //public static void Main(string[] args)
         //{
         //    string s = Console.ReadLine();

@@ -2,7 +2,7 @@
 
 namespace Algorithms.LinkedList
 {
-    public class ReverseSinglyLinkedList
+    public class InsertNodeAtPosition
     {
 
         class SinglyLinkedListNode
@@ -60,12 +60,14 @@ namespace Algorithms.LinkedList
             }
         }
 
-        
         /*
-            * Complete the 'reverse' function below.
+            * Complete the 'insertNodeAtPosition' function below.
             *
             * The function is expected to return an INTEGER_SINGLY_LINKED_LIST.
-            * The function accepts INTEGER_SINGLY_LINKED_LIST llist as parameter.
+            * The function accepts following parameters:
+            *  1. INTEGER_SINGLY_LINKED_LIST llist
+            *  2. INTEGER data
+            *  3. INTEGER position
             */
 
         /*
@@ -79,52 +81,55 @@ namespace Algorithms.LinkedList
             *
             */
 
-        static SinglyLinkedListNode reverse(SinglyLinkedListNode llist)
+        static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode llist, int data, int position)
         {
-            SinglyLinkedListNode left = null;
+            var result = llist;
 
-            while (llist != null)
+            for (int i = 0; llist != null && i < position - 1; ++i)
             {
-                var temp = llist.next;
-                llist.next = left;
-                left = llist;
-                llist = temp;
+                llist = llist.next;
             }
 
-            return left;
+            if (llist != null)
+            {
+                var temp = llist.next;
+                llist.next = new SinglyLinkedListNode(data);
+                llist.next.next = temp;
+            }
+
+            return result;
         }
 
 /*
-1
-5
+4
 1
 2
 3
 4
-5
+9
+2
 */
 
         //static void Main(string[] args)
         //{
-        //    int tests = Convert.ToInt32(Console.ReadLine());
+        //    SinglyLinkedList llist = new SinglyLinkedList();
 
-        //    for (int testsItr = 0; testsItr < tests; testsItr++)
+        //    int llistCount = Convert.ToInt32(Console.ReadLine());
+
+        //    for (int i = 0; i < llistCount; i++)
         //    {
-        //        SinglyLinkedList llist = new SinglyLinkedList();
-
-        //        int llistCount = Convert.ToInt32(Console.ReadLine());
-
-        //        for (int i = 0; i < llistCount; i++)
-        //        {
-        //            int llistItem = Convert.ToInt32(Console.ReadLine());
-        //            llist.InsertNode(llistItem);
-        //        }
-
-        //        SinglyLinkedListNode llist1 = ReverseSinglyLinkedList.reverse(llist.head);
-
-        //        PrintSinglyLinkedList(llist1, " ");
-        //        Console.WriteLine();
+        //        int llistItem = Convert.ToInt32(Console.ReadLine());
+        //        llist.InsertNode(llistItem);
         //    }
+
+        //    int data = Convert.ToInt32(Console.ReadLine());
+
+        //    int position = Convert.ToInt32(Console.ReadLine());
+
+        //    SinglyLinkedListNode llist_head = InsertNodeAtPosition.insertNodeAtPosition(llist.head, data, position);
+
+        //    PrintSinglyLinkedList(llist_head, " ");
+        //    Console.WriteLine();
 
         //    Console.Read();
         //}

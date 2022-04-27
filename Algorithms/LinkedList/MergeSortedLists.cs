@@ -66,7 +66,6 @@ namespace Algorithms.LinkedList
         static SinglyLinkedListNode mergeSortedLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2)
         {
             SinglyLinkedListNode result;
-            SinglyLinkedListNode buffer = head1;
 
             if (head1.data < head2.data)
             {
@@ -79,7 +78,7 @@ namespace Algorithms.LinkedList
                 head2 = head2.next;
             }
 
-            buffer = result;
+            var buffer = result;
 
             while (head1 != null && head2 != null)
             {
@@ -87,14 +86,15 @@ namespace Algorithms.LinkedList
                 {
                     buffer.next = head1;
                     head1 = head1.next;
-                    buffer = buffer.next;
                 }
                 else
                 {
                     buffer.next = head2;
                     head2 = head2.next;
-                    buffer = buffer.next;
                 }
+
+                buffer = buffer.next;
+
             }
 
             if (head1 != null)
@@ -108,6 +108,17 @@ namespace Algorithms.LinkedList
 
             return result;
         }
+
+/*
+1
+3
+1
+2
+3
+2
+3
+4
+*/
 
         //static void Main(string[] args)
         //{

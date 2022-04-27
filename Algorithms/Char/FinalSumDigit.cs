@@ -36,6 +36,10 @@ namespace Algorithms.Char
             return superDigit(sum);
         }
 
+/*
+9875 4
+*/
+
         //public static void Main(string[] args)
         //{
         //    string[] firstMultipleInput = Console.ReadLine().TrimEnd().Split(' ');

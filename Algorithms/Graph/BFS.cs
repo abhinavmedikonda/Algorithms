@@ -70,6 +70,15 @@ namespace Algorithms.Graph
             return weights;
         }
 
+/*
+1
+5 3
+1 2
+1 3
+3 4
+1
+*/
+
         //public static void Main(string[] args)
         //{
         //    int q = Convert.ToInt32(Console.ReadLine().Trim());

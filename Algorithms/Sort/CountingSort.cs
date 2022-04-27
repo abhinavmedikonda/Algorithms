@@ -31,6 +31,11 @@ namespace Algorithms.Sort
             return sortedList;
         }
 
+/*
+50
+25 1 16 8 25 9 12 39 39 25 10 32 44 3 30 27 46 27 32 18 21 40 40 34 24 42 23 41 22 6 50 30 20 1 43 3 33 46 44 9 48 33 16 32 21 13 33 29 15 7
+*/
+
         //public static void Main(string[] args)
         //{
         //    int n = Convert.ToInt32(Console.ReadLine().Trim());

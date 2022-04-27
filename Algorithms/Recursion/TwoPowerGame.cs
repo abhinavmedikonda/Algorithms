@@ -80,6 +80,12 @@ namespace Algorithms.Recursion
             }
         }
 
+/*
+2
+6
+132
+*/
+
         //public static void Main(string[] args)
         //{
         //    int t = Convert.ToInt32(Console.ReadLine().Trim());

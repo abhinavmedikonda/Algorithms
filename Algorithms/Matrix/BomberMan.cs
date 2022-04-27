@@ -79,13 +79,15 @@ namespace Algorithms.Matrix
             }
         }
 
-//6 7 5
-//.......
-//...O.O.
-//....O..
-//..O....
-//OO...OO
-//OO.O...
+/*
+6 7 5
+.......
+...O.O.
+....O..
+..O....
+OO...OO
+OO.O...
+*/
 
         //public static void Main(string[] args)
         //{

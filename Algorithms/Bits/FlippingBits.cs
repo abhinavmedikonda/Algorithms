@@ -45,6 +45,13 @@ namespace Algorithms.Bits
             return num;
         }
 
+/*
+3
+2147483647
+1
+0
+*/
+
         //public static void Main(string[] args)
         //{
         //    int q = Convert.ToInt32(Console.ReadLine().Trim());

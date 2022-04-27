@@ -24,6 +24,13 @@ namespace Algorithms.Matrix
             return Math.Abs(diag1 - diag2);
         }
 
+/*
+3
+11 2 4
+4 5 6
+10 8 -12
+*/
+
         //public static void Main(string[] args)
         //{
         //    int n = Convert.ToInt32(Console.ReadLine().Trim());

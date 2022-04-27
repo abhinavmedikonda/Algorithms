@@ -14,6 +14,19 @@ namespace Algorithms.stringBuilder
     /// </summary>
     public class TextEditor
     {
+
+/*
+8
+1 abc
+3 3
+2 3
+1 xy
+3 2
+4
+4
+3 1
+*/
+
         //static void Main(String[] args)
         //{
         //    int doCount = Convert.ToInt32(Console.ReadLine().Trim());

@@ -37,6 +37,11 @@ namespace Algorithms.Arrays
             return count;
         }
 
+/*
+5 2
+1 5 3 4 2
+*/
+
         //public static void Main(string[] args)
         //{
         //    string[] firstMultipleInput = Console.ReadLine().TrimEnd().Split(' ');

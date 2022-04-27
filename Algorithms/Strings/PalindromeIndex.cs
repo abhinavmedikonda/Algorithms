@@ -56,6 +56,13 @@ namespace Algorithms.Strings
             return true;
         }
 
+/*
+3
+aaab
+baa
+aaa
+*/
+
         //public static void Main(string[] args)
         //{
         //    int q = Convert.ToInt32(Console.ReadLine().Trim());

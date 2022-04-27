@@ -22,6 +22,11 @@ namespace Algorithms.Arrays
             return result;
         }
 
+/*
+5 4
+1 2 3 4 5
+*/
+
         //public static void Main(string[] args)
         //{
         //    string[] firstMultipleInput = Console.ReadLine().TrimEnd().Split(' ');

@@ -70,6 +70,17 @@ namespace Algorithms.Strings
             }
         }
 
+/*
+7
+aab
+defgab
+abcde
+aabcde
+cedaaa
+bbbbbbbbbb
+jabjjjad
+*/
+
         //public static void Main(string[] args)
         //{
         //    int n = Convert.ToInt32(Console.ReadLine().Trim());

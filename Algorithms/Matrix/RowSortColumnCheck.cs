@@ -37,6 +37,16 @@ namespace Algorithms.Matrix
             return "YES";
         }
 
+/*
+1
+5
+eabcd
+fghij
+olkmn
+trpqs
+xywuv
+*/
+
         //public static void Main(string[] args)
         //{
         //    int t = Convert.ToInt32(Console.ReadLine().Trim());

@@ -29,6 +29,10 @@ namespace Algorithms.Char
             return hash.Count == 26 ? "pangram" : "not pangram";
         }
 
+/*
+We promptly judged antique ivory buckles for the next prize
+*/
+
         //public static void Main(string[] args)
         //{
         //    TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);

@@ -38,6 +38,13 @@ namespace Algorithms.Loops
             return 0;
         }
 
+/*
+3
+1 5
+10 3
+3 4
+*/
+
         //public static void Main(string[] args)
         //{
         //    int n = Convert.ToInt32(Console.ReadLine().Trim());

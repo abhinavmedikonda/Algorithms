@@ -59,6 +59,16 @@ namespace Algorithms.Strings
             return hash;
         }
 
+/*
+6
+aaabbb
+ab
+abc
+mnop
+xyyx
+xaxbbbxx
+*/
+
         //public static void Main(string[] args)
         //{
         //    int q = Convert.ToInt32(Console.ReadLine().Trim());

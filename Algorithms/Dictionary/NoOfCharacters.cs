@@ -54,7 +54,9 @@ namespace Algorithms.Dictionary
             return "YES";
         }
 
-//abcdefghhgfedecba
+/*
+abcdefghhgfedecba
+*/
 
         //public static void Main(string[] args)
         //{

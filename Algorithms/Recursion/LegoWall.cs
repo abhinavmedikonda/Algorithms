@@ -44,43 +44,52 @@ namespace Algorithms.Recursion
         //    return recursiveLegoBlocks(n, m, lego);
         //}
 
-        //private static int recursiveLegoBlocks(int n, int m, List<List<int>> l)
-        //{
-        //    List<List<int>> lego = new List<List<int>>();
-        //    l.ForEach(x => lego.Add(new List<int>(x)));
+//{
+//    List<List<int>> lego = new List<List<int>>();
+//    l.ForEach(x => lego.Add(new List<int>(x)));
 
-        //    int total = 0;
+//    int total = 0;
 
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        int filled = lego[i][lego[i].Count - 1];
-        //        bool change = false;
-        //        for (int size = 1; size <= m - filled && size <= 4; size++)
-        //        {
+//    for (int i = 0; i < n; i++)
+//    {
+//        int filled = lego[i][lego[i].Count - 1];
+//        bool change = false;
+//        for (int size = 1; size <= m - filled && size <= 4; size++)
+//        {
 
-        //            if (filled + size == m && i == n - 1)
-        //            {
-        //                return total + 1;
-        //            }
-        //            if (i == n-1 && lego.Take(n-1).All(x => x.Contains(filled+size)))
-        //            {
-        //                continue;
-        //            }
+//            if (filled + size == m && i == n - 1)
+//            {
+//                return total + 1;
+//            }
+//            if (i == n-1 && lego.Take(n-1).All(x => x.Contains(filled+size)))
+//            {
+//                continue;
+//            }
 
-        //            change = true;
-        //            lego[i].Add(filled + size);
-        //            total += recursiveLegoBlocks(n, m, lego);
-        //            lego[i].RemoveAt(lego[i].Count-1);
-        //        }
+//            change = true;
+//            lego[i].Add(filled + size);
+//            total += recursiveLegoBlocks(n, m, lego);
+//            lego[i].RemoveAt(lego[i].Count-1);
+//        }
 
-        //        if (change)
-        //        {
-        //            return total;
-        //        }
-        //    }
+//        if (change)
+//        {
+//            return total;
+//        }
+//    }
 
-        //    return total;
-        //}
+//    return total;
+//}
+
+/*
+6
+4 5
+4 6
+4 7
+5 4
+6 4
+7 4
+*/
 
         //public static void Main(string[] args)
         //{

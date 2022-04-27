@@ -28,6 +28,15 @@ namespace Algorithms.Matrix
             return sum;
         }
 
+/*
+1
+2
+112 42 83 119
+56 125 56 49
+15 78 101 43
+62 98 114 108
+*/
+
         //public static void Main(string[] args)
         //{
         //    int q = Convert.ToInt32(Console.ReadLine().Trim());
@@ -49,8 +58,8 @@ namespace Algorithms.Matrix
         //    }
 
         //    Console.Read();
-            //}
+        //}
 
-        }
+    }
 
 }
