@@ -13,8 +13,10 @@ namespace Algorithms.Strings
 
         public static List<int> matchingStrings(List<string> strings, List<string> queries)
         {
+            //numbers.Sort((a, b) => a > b ? 1 : -1);   
             //sorting ascending
             strings.Sort((a, b) => string.Compare(a, b, StringComparison.OrdinalIgnoreCase));
+
             //sorting decending
             strings.Sort((a, b) => string.Compare(b, a, StringComparison.OrdinalIgnoreCase));
 

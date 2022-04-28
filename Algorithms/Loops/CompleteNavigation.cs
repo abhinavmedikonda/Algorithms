@@ -17,14 +17,12 @@ namespace Algorithms.Loops
         {
             for (int i = 0; i < petrolpumps.Count; i++)
             {
-                int pumpsCovered = 0;
-                int fuel = 0;
-                while (pumpsCovered < petrolpumps.Count)
+                int sum = 0;
+                for (int j = 0; j < petrolpumps.Count; j++)
                 {
-                    int pumpIndex = i + pumpsCovered >= petrolpumps.Count ? i + pumpsCovered - petrolpumps.Count : i + pumpsCovered;
-                    pumpsCovered++;
-                    fuel += petrolpumps[pumpIndex][0] - petrolpumps[pumpIndex][1];
-                    if (fuel < 0)
+                    var index = i + j < petrolpumps.Count ? i + j : i + j - petrolpumps.Count;
+                    sum += petrolpumps[index][0] - petrolpumps[index][1];
+                    if (sum < 0)
                     {
                         goto loop1;
                     }

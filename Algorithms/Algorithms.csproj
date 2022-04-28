@@ -20,6 +20,7 @@
     <None Remove="Graph\" />
     <None Remove="Bits\" />
     <None Remove="Dictionary\" />
+    <None Remove="Stacks\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Arrays\" />
@@ -36,5 +37,6 @@
     <Folder Include="Graph\" />
     <Folder Include="Bits\" />
     <Folder Include="Dictionary\" />
+    <Folder Include="stack\" />
   </ItemGroup>
 </Project>
