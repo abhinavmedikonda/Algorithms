@@ -21,6 +21,7 @@
     <None Remove="Bits\" />
     <None Remove="Dictionary\" />
     <None Remove="Stacks\" />
+    <None Remove="heap\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Arrays\" />
@@ -38,5 +39,6 @@
     <Folder Include="Bits\" />
     <Folder Include="Dictionary\" />
     <Folder Include="stack\" />
+    <Folder Include="heap\" />
   </ItemGroup>
 </Project>

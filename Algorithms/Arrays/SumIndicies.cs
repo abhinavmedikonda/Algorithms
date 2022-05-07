@@ -13,6 +13,8 @@ namespace Algorithms.Arrays
 
         public static List<int> sumIndicies(int m, List<int> arr)
         {
+            arr.GetRange(0, 5).Max();
+
             Dictionary<int, int> hash1 = new Dictionary<int, int>(), hash2 = new Dictionary<int, int>();
 
             //foreach with index
