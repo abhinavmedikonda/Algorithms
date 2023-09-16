@@ -13,39 +13,26 @@ namespace Algorithms.Switch
 
         public static string balancedBrackets(string s)
         {
-            Stack<char> stack = new Stack<char>();
-
-            foreach (var c in s)
-            {
-                if (new char[] { '(', '[', '{' }.Contains(c))
-                {
-                    stack.Push(c);
-                    continue;
-                }
-                else
-                {
-                    char balance = '0';
-
-                    switch (c)
-                    {
-                        case ')':
-                            balance = '(';
-                            break;
-                        case ']':
-                            balance = '[';
-                            break;
-                        case '}':
-                            balance = '{';
-                            break;
-                    }
-
-                    if (stack.Count == 0 || balance != stack.Pop())
-                    {
+            var stack = new Stack<char>();
+            var map = new Dictionary<char, char>{ {')', '('}, {']', '['}, {'}', '{'} };
+        
+            foreach(var c in s){
+                switch(c){
+                    case '(': case '[': case '{':
+                        stack.Push(c);
+                        break;
+                    case ')': case ']': case '}':
+                        if(stack.Count == 0 || map[c] != stack.Pop()){
+                            return "NO";
+                        }
+                    
+                        break;
+                    default:
                         return "NO";
-                    }
+                        break;
                 }
             }
-
+        
             return stack.Count == 0 ? "YES" : "NO";
         }
 

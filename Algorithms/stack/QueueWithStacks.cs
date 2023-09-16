@@ -19,32 +19,32 @@ namespace Algorithms.stack
 2
 2
 */
-        static void Main(String[] args)
-        {
-            int operations = Convert.ToInt32(Console.ReadLine());
+        //static void Main(String[] args)
+        //{
+        //    int operations = Convert.ToInt32(Console.ReadLine());
 
-            Q q = new Q();
+        //    Q q = new Q();
 
-            for (int i = 0; i < operations; i++)
-            {
-                var operation = Console.ReadLine().Trim().Split(' ').Select(x => Convert.ToInt32(x)).ToList();
+        //    for (int i = 0; i < operations; i++)
+        //    {
+        //        var operation = Console.ReadLine().Trim().Split(' ').Select(x => Convert.ToInt32(x)).ToList();
 
-                switch (operation[0])
-                {
-                    case 1:
-                        q.Enqueue(operation[1]);
-                        break;
-                    case 2:
-                        q.Dequeue();
-                        break;
-                    case 3:
-                        Console.WriteLine(q.Print());
-                        break;
-                }
-            }
+        //        switch (operation[0])
+        //        {
+        //            case 1:
+        //                q.Enqueue(operation[1]);
+        //                break;
+        //            case 2:
+        //                q.Dequeue();
+        //                break;
+        //            case 3:
+        //                Console.WriteLine(q.Print());
+        //                break;
+        //        }
+        //    }
 
-            Console.ReadLine();
-        }
+        //    Console.ReadLine();
+        //}
 
         class Q
         {
