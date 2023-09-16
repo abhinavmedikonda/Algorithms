@@ -7,7 +7,7 @@ namespace Algorithms.stack
     {
 
 /*
- * 10
+10
 1 42
 2
 1 14
@@ -19,66 +19,63 @@ namespace Algorithms.stack
 2
 2
 */
-        //static void Main(String[] args)
-        //{
-        //    int operations = Convert.ToInt32(Console.ReadLine());
+        static void Main(String[] args)
+        {
+            int operations = Convert.ToInt32(Console.ReadLine());
 
-        //    Q q = new Q();
+            Q q = new Q();
 
-        //    for (int i = 0; i < operations; i++)
-        //    {
-        //        var operation = Console.ReadLine().Trim().Split(' ').Select(x => Convert.ToInt32(x)).ToList();
+            for (int i = 0; i < operations; i++)
+            {
+                var operation = Console.ReadLine().Trim().Split(' ').Select(x => Convert.ToInt32(x)).ToList();
 
-        //        switch (operation[0])
-        //        {
-        //            case 1:
-        //                q.Enqueue(operation[1]);
-        //                break;
-        //            case 2:
-        //                q.Dequeue();
-        //                break;
-        //            case 3:
-        //                Console.WriteLine(q.Print());
-        //                break;
-        //        }
-        //    }
+                switch (operation[0])
+                {
+                    case 1:
+                        q.Enqueue(operation[1]);
+                        break;
+                    case 2:
+                        q.Dequeue();
+                        break;
+                    case 3:
+                        Console.WriteLine(q.Print());
+                        break;
+                }
+            }
 
-        //    Console.ReadLine();
-        //}
+            Console.ReadLine();
+        }
 
         class Q
         {
-            Stack<int> front = new Stack<int>();
-            Stack<int> back = new Stack<int>();
+            Stack<int> primary = new Stack<int>(), secondary = new Stack<int>();
 
-            public void Enqueue(int i)
+            public void Enqueue(int number)
             {
-                while (front.Count > 0)
-                {
-                    back.Push(front.Pop());
-                }
-
-                back.Push(i);
+                primary.Push(number);
             }
 
-            public int Dequeue()
+            public void Dequeue()
             {
-                while (back.Count > 0)
-                {
-                    front.Push(back.Pop());
-                }
-
-                return front.Pop();
+                migrate();
+                secondary.Pop();
             }
 
             public int Print()
             {
-                while (back.Count > 0)
-                {
-                    front.Push(back.Pop());
-                }
+                migrate();
+                return secondary.Peek();
+            }
 
-                return front.Peek();
+            private void migrate()
+            {
+                if (secondary.Count == 0)
+                {
+                    while (primary.Count > 0)
+                    {
+                        secondary.Push(primary.Pop());
+                    }
+                }
             }
         }
     }

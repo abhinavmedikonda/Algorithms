@@ -12,9 +12,9 @@ namespace Algorithms.Arrays
          * Return maxSumSubArray and maxSumSubSequence for given array.
          */
 
-        public static List<int> maxSubarray(List<int> arr)
+        public static List<int> maxSumSubArray(List<int> arr)
         {
-            int subArrSum = 0, maxSubArrSum = int.MinValue, subSeqSum = 0, maxSubSeqSum = int.MinValue;
+            int subArrSum = 0, maxSubArrSum = int.MinValue, maxSubSeqSum = int.MinValue;
 
             for (int i = 0; i < arr.Count; i++)
             {
@@ -30,14 +30,8 @@ namespace Algorithms.Arrays
 
                 if (arr[i] > 0)
                 {
-                    subSeqSum = Math.Max(arr[i], subSeqSum + arr[i]);
+                    maxSubSeqSum += arr[i];
                 }
-                else
-                {
-                    subSeqSum = Math.Max(arr[i], maxSubSeqSum);
-                }
-
-                maxSubSeqSum = subSeqSum;
             }
 
             return new List<int> { maxSubArrSum, maxSubSeqSum };
@@ -61,7 +55,7 @@ namespace Algorithms.Arrays
 
         //        List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
 
-        //        List<int> result = MaximumSumSubArray.maxSubarray(arr);
+        //        List<int> result = MaximumSumSubArray.maxSumSubArray(arr);
 
         //        Console.WriteLine(String.Join(" ", result));
         //    }

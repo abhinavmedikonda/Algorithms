@@ -25,15 +25,16 @@ namespace Algorithms.Strings
 
             int result = 0;
 
-            foreach (var keyValuePair in leftHash.OrderByDescending(x => x.Value))
+
+            foreach (var item in leftHash)
             {
-                if (rightHash.ContainsKey(keyValuePair.Key) && leftHash[keyValuePair.Key] > rightHash[keyValuePair.Key])
+                if (rightHash.ContainsKey(item.Key) && leftHash[item.Key] > rightHash[item.Key])
                 {
-                    result += leftHash[keyValuePair.Key] - rightHash[keyValuePair.Key];
+                    result += leftHash[item.Key] - rightHash[item.Key];
                 }
-                else if (!rightHash.ContainsKey(keyValuePair.Key))
+                else if(!rightHash.ContainsKey(item.Key))
                 {
-                    result += leftHash[keyValuePair.Key];
+                    result += leftHash[item.Key];
                 }
             }
 

@@ -12,28 +12,21 @@ namespace Algorithms.Strings
 
         public static int palindromeIndex(string s)
         {
-            int left = 0, right = s.Length - 1;
-
-            while (left < right)
+            for (int i = 0, j = s.Length - 1; i < j; i++, j--)
             {
-                if (s[left] != s[right])
+                if (s[i] != s[j])
                 {
-                    if (isPalindrome(s.Remove(left, 1)))
+                    if (isPalindrome(s.Remove(i, 1)))
                     {
-                        return left;
+                        return i;
                     }
-                    else if (isPalindrome(s.Remove(right, 1)))
+                    if (isPalindrome(s.Remove(j, 1)))
                     {
-                        return right;
+                        return j;
                     }
-                    else
-                    {
-                        return -1;
-                    }
-                }
 
-                left++;
-                right--;
+                    return -1;
+                }
             }
 
             return -1;
@@ -41,16 +34,12 @@ namespace Algorithms.Strings
 
         private static bool isPalindrome(string s)
         {
-            int left = 0, right = s.Length - 1;
-            while (left < right)
+            for (int i = 0, j = s.Length - 1; i < j; i++, j--)
             {
-                if (s[left] != s[right])
+                if (s[i] != s[j])
                 {
                     return false;
                 }
-
-                left++;
-                right--;
             }
 
             return true;

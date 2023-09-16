@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Algorithms.Char
 {
@@ -11,29 +12,19 @@ namespace Algorithms.Char
 
         public static int superDigit(string n, int k)
         {
-            long sum = 0;
-            foreach (var c in n)
-            {
-                sum += c - '0';
-            }
-
-            return superDigit(sum * k);
+            var str = Convert.ToInt32(superDigit(n)) * k;
+            return Convert.ToInt32(superDigit(str.ToString()));
         }
 
-        private static int superDigit(long n)
+        private static string superDigit(string n)
         {
-            if (n.ToString().Length == 1)
-            {
-                return (int)n;
-            }
+            string sum = n.Select(c => c-'0').Sum().ToString();
 
-            long sum = 0;
-            foreach (var c in n.ToString())
+            if (sum.Length > 1)
             {
-                sum += c - '0';
+                sum = superDigit(sum);
             }
-
-            return superDigit(sum);
+            return sum;
         }
 
 /*

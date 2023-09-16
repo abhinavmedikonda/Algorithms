@@ -11,74 +11,108 @@ namespace Algorithms.Recursion
          * Whoever reduces the number to 1 wins the game. Louise always starts
          */
 
-        static Dictionary<int, long> hash = new Dictionary<int, long> { { 1, 2 } };
-
-        public static string twoPowerGame(long n)
+        public static string counterGame(long n)
         {
-            bool player1 = false;
+            int totalTurns = 0;
+            long twoSquares = 1;
 
-            while (n != 1)
+            while (twoSquares < n)
             {
-                if (maxTwoPowerIn(n) == n)
+                twoSquares *= 2;
+            }
+
+            while (n > 1)
+            {
+                totalTurns++;
+
+                if (n == twoSquares)
                 {
                     n /= 2;
+                    twoSquares /= 2;
                 }
                 else
                 {
-                    n -= maxTwoPowerIn(n);
+                    while (twoSquares >= n)
+                    {
+                        twoSquares /= 2;
+                    }
+
+                    n -= twoSquares;
                 }
 
-                player1 = !player1;
             }
 
-            return player1 ? "Louise" : "Richard";
+            return totalTurns % 2 == 0 ? "Richard" : "Louise";
         }
 
-        private static long maxTwoPowerIn(long n)
-        {
-            int highPower = 2;
+        //static Dictionary<int, long> hash = new Dictionary<int, long> { { 1, 2 } };
 
-            while (twoPower(highPower) < n)
-            {
-                highPower *= 2;
-            }
+        //public static string twoPowerGame(long n)
+        //{
+        //    bool player1 = false;
 
-            int lowPower = highPower / 2, power = (lowPower + highPower) / 2;
+        //    while (n != 1)
+        //    {
+        //        if (maxTwoPowerIn(n) == n)
+        //        {
+        //            n /= 2;
+        //        }
+        //        else
+        //        {
+        //            n -= maxTwoPowerIn(n);
+        //        }
 
-            while (twoPower(power) != n)
-            {
-                if (highPower - lowPower == 1)
-                {
-                    return twoPower(highPower) == n ? n : twoPower(lowPower);
-                }
+        //        player1 = !player1;
+        //    }
 
-                if (twoPower(power) > n)
-                {
-                    highPower = power;
-                }
-                else
-                {
-                    lowPower = power;
-                }
+        //    return player1 ? "Louise" : "Richard";
+        //}
 
-                power = (lowPower + highPower) / 2;
-            }
+        //private static long maxTwoPowerIn(long n)
+        //{
+        //    int highPower = 2;
 
-            return n;
-        }
+        //    while (twoPower(highPower) < n)
+        //    {
+        //        highPower *= 2;
+        //    }
 
-        private static long twoPower(int power)
-        {
-            if (hash.ContainsKey(power))
-            {
-                return hash[power];
-            }
-            else
-            {
-                hash.Add(power, twoPower(power / 2) * twoPower(power / 2) * (power % 2 == 0 ? 1 : 2));
-                return twoPower(power);
-            }
-        }
+        //    int lowPower = highPower / 2, power = (lowPower + highPower) / 2;
+
+        //    while (twoPower(power) != n)
+        //    {
+        //        if (highPower - lowPower == 1)
+        //        {
+        //            return twoPower(highPower) == n ? n : twoPower(lowPower);
+        //        }
+
+        //        if (twoPower(power) > n)
+        //        {
+        //            highPower = power;
+        //        }
+        //        else
+        //        {
+        //            lowPower = power;
+        //        }
+
+        //        power = (lowPower + highPower) / 2;
+        //    }
+
+        //    return n;
+        //}
+
+        //private static long twoPower(int power)
+        //{
+        //    if (hash.ContainsKey(power))
+        //    {
+        //        return hash[power];
+        //    }
+        //    else
+        //    {
+        //        hash.Add(power, twoPower(power / 2) * twoPower(power / 2) * (power % 2 == 0 ? 1 : 2));
+        //        return twoPower(power);
+        //    }
+        //}
 
 /*
 2
@@ -94,7 +128,7 @@ namespace Algorithms.Recursion
         //    {
         //        long n = Convert.ToInt64(Console.ReadLine().Trim());
 
-        //        string result = TwoPowerGame.twoPowerGame(n);
+        //        string result = TwoPowerGame.counterGame(n);
 
         //        Console.WriteLine(result);
         //    }

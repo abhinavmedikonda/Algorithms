@@ -14,33 +14,57 @@ namespace Algorithms.Char
 
         public static string caesarCipher(string s, int k)
         {
-            StringBuilder sb = new StringBuilder();
-            int shift = k % 26;
+            var sb = new StringBuilder(s);
+            k %= 26;
 
-            foreach (var c in s)
+            for (int i = 0; i < sb.Length; i++)
             {
-                if (c >= 'a' && c <= 'z')
+                if (char.IsLetter(sb[i]))
                 {
-                    sb.Append((char)(c + shift > 'z' ? c + shift - 26 : c+ shift));
-                }
-                else if (c >= 'A' && c <= 'Z')
-                {
-                    sb.Append((char)(c + shift > 'Z' ? c + shift - 26 : c + shift));
-                }
-                else
-                {
-                    sb.Append(c);
+                    var isLower = char.IsLower(sb[i]);
+                    sb[i] = Convert.ToChar(sb[i] + k);
+                    if (!char.IsLetter(sb[i]) || isLower != char.IsLower(sb[i]))
+                    {
+                        sb[i] = Convert.ToChar(sb[i] - 26);
+                    }
                 }
             }
 
             return sb.ToString();
         }
 
-/*
-11
-middle-Outz
-2
-*/
+        ///
+        // using ascii numbers to identify chars
+        ///
+        //public static string caesarCipher(string s, int k)
+        //{
+        //    StringBuilder sb = new StringBuilder();
+        //    int shift = k % 26;
+
+        //    foreach (var c in s)
+        //    {
+        //        if (c >= 'a' && c <= 'z')
+        //        {
+        //            sb.Append((char)(c + shift > 'z' ? c + shift - 26 : c+ shift));
+        //        }
+        //        else if (c >= 'A' && c <= 'Z')
+        //        {
+        //            sb.Append((char)(c + shift > 'Z' ? c + shift - 26 : c + shift));
+        //        }
+        //        else
+        //        {
+        //            sb.Append(c);
+        //        }
+        //    }
+
+        //    return sb.ToString();
+        //}
+
+        /*
+        11
+        middle-Outz
+        2
+        */
 
         //public static void Main(string[] args)
         //{
