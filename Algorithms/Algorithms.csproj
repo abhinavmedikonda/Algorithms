@@ -22,6 +22,7 @@
     <None Remove="Dictionary\" />
     <None Remove="Stacks\" />
     <None Remove="heap\" />
+    <None Remove="Tuple\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Arrays\" />
@@ -40,5 +41,6 @@
     <Folder Include="Dictionary\" />
     <Folder Include="stack\" />
     <Folder Include="heap\" />
+    <Folder Include="Tuple\" />
   </ItemGroup>
 </Project>
