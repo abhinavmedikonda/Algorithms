@@ -13,6 +13,22 @@ namespace Algorithms.Sort
 
         public static List<string> bigSorting(List<string> unsorted)
         {
+            //unsorted.Sort((a, b) =>
+            //{
+            //    if(a.Length == b.Length)
+            //    {
+            //        return string.Compare(a, b);
+            //    }
+            //    else if(a.Length > b.Length)
+            //    {
+            //        return 1;
+            //    }
+            //    else
+            //    {
+            //        return -1;
+            //    }
+            //});
+
             unsorted.Sort((b, a) => {
                 return string.Compare(new string('0', a.Length - b.Length > 0 ? a.Length - b.Length : 0) + b,
                 new string('0', b.Length - a.Length > 0 ? b.Length - a.Length : 0) + a);

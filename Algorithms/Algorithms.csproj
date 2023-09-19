@@ -23,6 +23,7 @@
     <None Remove="Stacks\" />
     <None Remove="heap\" />
     <None Remove="Tuple\" />
+    <None Remove="Files\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Arrays\" />
@@ -42,5 +43,6 @@
     <Folder Include="stack\" />
     <Folder Include="heap\" />
     <Folder Include="Tuple\" />
+    <Folder Include="Files\" />
   </ItemGroup>
 </Project>
