@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+
 
 namespace Algorithms.Maths
 {
@@ -9,30 +11,31 @@ namespace Algorithms.Maths
          * calculate portortions of positive, 0s, negative numbers in the list with 5 decimal values
          */
 
-        private static void calculateProportions()
+        public static void calculateProportions(List<int> arr)
         {
-            int[] array = new int[] { 3, 5, 1, 1, 3, 4, 9, 2, 8, 4, -1 };
-
-            print(Convert.ToSingle(array.Count()), array.Where(x => x > 0).Count());
-            print(Convert.ToSingle(array.Count()), array.Where(x => x == 0).Count());
-            print(Convert.ToSingle(array.Count()), array.Where(x => x < 0).Count());
+            float positive = 0, negative = 0, zeros = 0;
+            foreach(var item in arr){
+                if(item > 0) positive++;
+                else if(item < 0) negative++;
+                else zeros++;
+            }
+            
+            //float formatting
+            Console.WriteLine((positive/arr.Count).ToString("0.000000"));
+            Console.WriteLine((negative/arr.Count).ToString("0.000000"));
+            Console.WriteLine((zeros/arr.Count).ToString("0.000000"));
         }
 
-        private static void print(float total, int count)
-        {
-            float x = count / total;
-            var intPart = Math.Truncate(x);
-            var decPart = Math.Truncate((x - intPart) * 100000).ToString();
-            Console.WriteLine($"{intPart}.{new string('0', 5 - decPart.Length)}{decPart}");
-        }
+/*
+6
+-4 3 -9 0 4 1
+*/
 
-
-
-        //static void Main(string[] args)
-        //{
-        //    CalculateProportions.calculateProportions();
-
-        //    Console.Read();
-        //}
+        // public static void Main(string[] args)
+        // {
+        //     int n = Convert.ToInt32(Console.ReadLine().Trim());
+        //     List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
+        //     CalculateProportions.calculateProportions(arr);
+        // }
     }
 }
