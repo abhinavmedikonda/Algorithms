@@ -14,35 +14,29 @@ namespace Algorithms.Time
 
         public static string timeConversion(string s)
         {
-            if (s.Substring(8) == "AM" && s.Substring(0, 2) == "12")
-            {
-                return $"00{s.Substring(2, 6)}";
-            }
-            if (s.Substring(8) == "AM")
-            {
-                return s.Substring(0, 8);
-            }
-            if (s.Substring(8) == "PM" && s.Substring(0, 2) == "12")
-            {
-                return $"12{s.Substring(2, 6)}";
-            }
+            int hour = Convert.ToInt32(s.Substring(0, 2));
+        
+            if(s.Substring(8, 2).ToUpper().Equals("AM"))
+                hour = hour == 12 ? hour-12 : hour;
+            else
+                hour = hour == 12 ? hour : hour+12;
 
-            return $"{12 + Convert.ToInt32(s.Substring(0, 2))}{s.Substring(2, 6)}";
+            return $"{hour.ToString("00")}:{s.Substring(3, 5)}";
         }
 
 /*
 07:05:45PM
 */
 
-        //public static void Main(string[] args)
-        //{
+        // public static void Main(string[] args)
+        // {
         //    string s = Console.ReadLine();
 
         //    string result = TimeConversion.timeConversion(s);
 
         //    Console.WriteLine(result);
         //    Console.Read();
-        //}
+        // }
 
     }
 }
