@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Algorithms.Bits
@@ -12,37 +14,22 @@ namespace Algorithms.Bits
 
         public static long flippingBits(long n)
         {
-            long num = n;
-            int length = 0;
-
-            var sb = new StringBuilder();
-
-            while (num > 0)
-            {
-                sb.Insert(0, num % 2);
-                num /= 2;
-                length++;
+            List<int> bits = new List<int>(Enumerable.Repeat(1, 32));
+            int iteration = 0;
+            while(n > 0){
+                long remainder = n%2;
+                n /= 2;
+                bits[iteration] = remainder == 0 ? 1 : 0;
+                iteration++;
             }
-
-            sb.Replace('0', ' ');
-            sb.Replace('1', '0');
-            sb.Replace(' ', '1');
-
-            sb.Insert(0, new string('1', 32 - length));
-
-            num = 0;
-            long power = 1;
-            for (int i = 31; i >= 0; i--)
-            {
-                if (sb[i] == '1')
-                {
-                    num += power;
-                }
-
-                power *= 2;
+            
+            long stage = 1;
+            foreach(var item in bits){   
+                n += stage*item;
+                stage *= 2;
             }
-
-            return num;
+            
+            return n;
         }
 
 /*
