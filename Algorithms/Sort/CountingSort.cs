@@ -18,10 +18,7 @@ namespace Algorithms.Sort
             int[] arrCounter = new int[arr.Max() + 1];
             List<int> sortedList = new List<int>();
 
-            foreach (var i in arr)
-            {
-                arrCounter[i]++;
-            }
+            arr.ForEach(x => arrCounter[x]++);
 
             for (int i = 0; i < arrCounter.Length; i++)
             {
