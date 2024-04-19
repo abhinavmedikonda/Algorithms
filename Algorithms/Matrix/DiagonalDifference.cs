@@ -13,15 +13,14 @@ namespace Algorithms.Matrix
 
         public static int diagonalDifference(List<List<int>> arr)
         {
-            int diag1 = 0, diag2 = 0;
-
-            for (int i = 0; i < arr.Count; i++)
-            {
-                diag1 += arr[i][i];
-                diag2 += arr[i][arr.Count - 1 - i];
+            int lr=0, rl=0;
+        
+            for(int i=0; i<arr.Count/2; i++){
+                lr += arr[0+i][0+i] + arr[arr.Count-1-i][arr.Count-1-i];
+                rl += arr[arr.Count-1-i][0+i] + arr[0+i][arr.Count-1-i];
             }
-
-            return Math.Abs(diag1 - diag2);
+            
+            return Math.Abs(lr-rl);
         }
 
 /*
@@ -31,8 +30,8 @@ namespace Algorithms.Matrix
 10 8 -12
 */
 
-        //public static void Main(string[] args)
-        //{
+        // public static void Main(string[] args)
+        // {
         //    int n = Convert.ToInt32(Console.ReadLine().Trim());
 
         //    List<List<int>> arr = new List<List<int>>();
@@ -46,7 +45,7 @@ namespace Algorithms.Matrix
 
         //    Console.WriteLine(result);
         //    Console.Read();
-        //}
+        // }
 
     }
 
