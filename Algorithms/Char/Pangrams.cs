@@ -16,14 +16,19 @@ namespace Algorithms.Char
 
             foreach (var c in s)
             {
-                if (c > 64 && c < 91 && !hash.Contains(c))
-                {
-                    hash.Add(c);
+
+                if(char.IsLetter(c)){
+                    if(!hash.Contains(char.ToUpper(c)))
+                        hash.Add(char.ToUpper(c));
                 }
-                else if (c > 96 && c < 123 && !hash.Contains((char)(c - 32)))
-                {
-                    hash.Add((char)(c - 32));
-                }
+                // if (c > 64 && c < 91 && !hash.Contains(c))
+                // {
+                //     hash.Add(c);
+                // }
+                // else if (c > 96 && c < 123 && !hash.Contains((char)(c - 32)))
+                // {
+                //     hash.Add((char)(c - 32));
+                // }
             }
 
             return hash.Count == 26 ? "pangram" : "not pangram";
@@ -33,19 +38,15 @@ namespace Algorithms.Char
 We promptly judged antique ivory buckles for the next prize
 */
 
-        //public static void Main(string[] args)
-        //{
-        //    TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
-
+        // public static void Main(string[] args)
+        // {
         //    string s = Console.ReadLine();
 
-        //    string result = Result.pangrams(s);
+        //    string result = Pangrams.pangrams(s);
 
-        //    textWriter.WriteLine(result);
-
-        //    textWriter.Flush();
-        //    textWriter.Close();
-        //}
+        //    Console.WriteLine(result);
+        //    Console.Read();
+        // }
 
     }
 }
