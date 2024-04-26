@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.heap
+namespace Algorithms.Heap
 {
     public class MinHeap
     {
@@ -110,8 +110,8 @@ namespace Algorithms.heap
 2 7
 */
 
-        //static void Main(String[] args)
-        //{
+        // static void Main(String[] args)
+        // {
         //    var heap = new List<int>();
         //    int t = Convert.ToInt32(Console.ReadLine().Trim());
 
@@ -125,6 +125,6 @@ namespace Algorithms.heap
         //    }
 
         //    Console.Read();
-        //}
+        // }
     }
 }

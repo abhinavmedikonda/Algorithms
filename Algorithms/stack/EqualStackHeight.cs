@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.stack
+namespace Algorithms.Stack
 {
     public class EqualStackHeight
     {
@@ -12,7 +12,7 @@ namespace Algorithms.stack
          * return the height when all 3 stacks are equal
          */
 
-        public static int equalStacks(List<int> h1, List<int> h2, List<int> h3)
+        public static int EqualStacks(List<int> h1, List<int> h2, List<int> h3)
         {
             Stack<int> s1 = new Stack<int>(new List<int> { 0 }), s2 = new Stack<int>(new List<int> { 0 }), s3 = new Stack<int>(new List<int> { 0 });
 
@@ -37,8 +37,8 @@ namespace Algorithms.stack
 1 1 4 1
 */
 
-        //public static void Main(string[] args)
-        //{
+        // public static void Main(string[] args)
+        // {
         //    string[] firstMultipleInput = Console.ReadLine().TrimEnd().Split(' ');
 
         //    int n1 = Convert.ToInt32(firstMultipleInput[0]);
@@ -53,11 +53,11 @@ namespace Algorithms.stack
 
         //    List<int> h3 = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(h3Temp => Convert.ToInt32(h3Temp)).ToList();
 
-        //    int result = Result.equalStacks(h1, h2, h3);
+        //    int result = EqualStackHeight.EqualStacks(h1, h2, h3);
 
         //    Console.WriteLine(result);
 
         //    Console.Read();
-        //}
+        // }
     }
 }
