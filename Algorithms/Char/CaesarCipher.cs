@@ -14,22 +14,17 @@ namespace Algorithms.Char
 
         public static string caesarCipher(string s, int k)
         {
-            var sb = new StringBuilder(s);
+            StringBuilder sb = new StringBuilder(s);
             k %= 26;
-
-            for (int i = 0; i < sb.Length; i++)
-            {
-                if (char.IsLetter(sb[i]))
-                {
-                    var isLower = char.IsLower(sb[i]);
-                    sb[i] = Convert.ToChar(sb[i] + k);
-                    if (!char.IsLetter(sb[i]) || isLower != char.IsLower(sb[i]))
-                    {
-                        sb[i] = Convert.ToChar(sb[i] - 26);
-                    }
+            
+            for(int i=0; i<sb.Length; i++){
+                if(char.IsLetter(sb[i])){
+                    var a = char.IsLower(sb[i]) ? 'a'+0 : 'A'+0;
+                    var index = sb[i]+k-a < 26 ? sb[i]+k : sb[i]+k-26;
+                    sb[i] = Convert.ToChar(index);
                 }
             }
-
+            
             return sb.ToString();
         }
 
@@ -60,25 +55,25 @@ namespace Algorithms.Char
         //    return sb.ToString();
         //}
 
-        /*
-        11
-        middle-Outz
-        2
-        */
+/*
+11
+middle-Outz
+2
+*/
 
-        //public static void Main(string[] args)
-        //{
-        //    int n = Convert.ToInt32(Console.ReadLine().Trim());
+        public static void Main(string[] args)
+        {
+           int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-        //    string s = Console.ReadLine();
+           string s = Console.ReadLine();
 
-        //    int k = Convert.ToInt32(Console.ReadLine().Trim());
+           int k = Convert.ToInt32(Console.ReadLine().Trim());
 
-        //    string result = CaesarCipher.caesarCipher(s, k);
+           string result = CaesarCipher.caesarCipher(s, k);
 
-        //    Console.WriteLine(result);
-        //    Console.Read();
-        //}
+           Console.WriteLine(result);
+           Console.Read();
+        }
 
     }
 }
