@@ -61,19 +61,19 @@ middle-Outz
 2
 */
 
-        public static void Main(string[] args)
-        {
-           int n = Convert.ToInt32(Console.ReadLine().Trim());
+        // public static void Main(string[] args)
+        // {
+        //    int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-           string s = Console.ReadLine();
+        //    string s = Console.ReadLine();
 
-           int k = Convert.ToInt32(Console.ReadLine().Trim());
+        //    int k = Convert.ToInt32(Console.ReadLine().Trim());
 
-           string result = CaesarCipher.caesarCipher(s, k);
+        //    string result = CaesarCipher.caesarCipher(s, k);
 
-           Console.WriteLine(result);
-           Console.Read();
-        }
+        //    Console.WriteLine(result);
+        //    Console.Read();
+        // }
 
     }
 }
