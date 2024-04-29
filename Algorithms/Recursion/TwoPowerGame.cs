@@ -13,36 +13,61 @@ namespace Algorithms.Recursion
 
         public static string counterGame(long n)
         {
-            int totalTurns = 0;
-            long twoSquares = 1;
-
-            while (twoSquares < n)
-            {
-                twoSquares *= 2;
+            var stack = new Stack<long>(new List<long>{2L});
+            while(n >= stack.Peek()){
+                Console.WriteLine(stack.Peek());
+                stack.Push(stack.Peek()*2);
             }
-
-            while (n > 1)
-            {
-                totalTurns++;
-
-                if (n == twoSquares)
-                {
+            
+            var counter = 0;
+            
+            while(n > 1){
+                var item = stack.Pop();
+                if(item > n){
+                    continue;
+                }
+                else if(item == n){
                     n /= 2;
-                    twoSquares /= 2;
                 }
-                else
-                {
-                    while (twoSquares >= n)
-                    {
-                        twoSquares /= 2;
-                    }
-
-                    n -= twoSquares;
+                else{
+                    n -= item;
                 }
-
+                
+                counter++;
             }
+            
+            return counter%2 == 0 ? "Richard" : "Louise";
 
-            return totalTurns % 2 == 0 ? "Richard" : "Louise";
+            // int totalTurns = 0;
+            // long twoSquares = 1;
+
+            // while (twoSquares < n)
+            // {
+            //     twoSquares *= 2;
+            // }
+
+            // while (n > 1)
+            // {
+            //     totalTurns++;
+
+            //     if (n == twoSquares)
+            //     {
+            //         n /= 2;
+            //         twoSquares /= 2;
+            //     }
+            //     else
+            //     {
+            //         while (twoSquares >= n)
+            //         {
+            //             twoSquares /= 2;
+            //         }
+
+            //         n -= twoSquares;
+            //     }
+
+            // }
+
+            // return totalTurns % 2 == 0 ? "Richard" : "Louise";
         }
 
         //static Dictionary<int, long> hash = new Dictionary<int, long> { { 1, 2 } };
