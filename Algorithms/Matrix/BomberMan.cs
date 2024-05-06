@@ -26,13 +26,11 @@ namespace Algorithms.Matrix
             var gridBuilder = new List<StringBuilder>();
             grid.ForEach(x => gridBuilder.Add(new StringBuilder(x)));
 
-            for (int i = 0; i <= (n-2)%4; i++)
+            // pattern repeats in every alternative detonation
+            for (int i=1; i<=(n-2)%4; i+=2)
             {
-                if (i % 2 != 0)
-                {
-                    detonate(gridBuilder);
-                    Console.WriteLine(String.Join("\n", gridBuilder) + "\n");
-                }
+                detonate(gridBuilder);
+                Console.WriteLine(String.Join("\n", gridBuilder) + "\n");
             }
 
             grid.Clear();
