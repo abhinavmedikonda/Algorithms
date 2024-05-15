@@ -54,6 +54,40 @@ namespace Algorithms.Dictionary
             return "YES";
         }
 
+        // public static string isValid(string s)
+        // {
+        //     if(s.Length < 4) return "YES";
+
+        //     var hash = new Dictionary<char, int>();
+            
+        //     foreach(var item in s){
+        //         if(!hash.ContainsKey(item)){
+        //             hash.Add(item, 0);
+        //         }
+                
+        //         hash[item]++;
+        //     }
+            
+        //     var groups = new SortedList<int, int>();
+        //     foreach(var item in hash){
+        //         if(!groups.ContainsKey(item.Value)){
+        //             groups.Add(item.Value, 0);
+        //         }
+                
+        //         groups[item.Value]++;
+        //     }
+            
+        //     if(groups.Count <= 1) return "YES";
+        //     if(groups.Count==2 && groups.Last().Key-groups.First().Key==1 && groups.Last().Value==1){
+        //         return "YES";
+        //     }
+        //     if(groups.Count==2 && groups.First().Key==1 && groups.First().Value==1){
+        //         return "YES";
+        //     }
+            
+        //     return "NO";
+        // }
+
 /*
 abcdefghhgfedecba
 */
