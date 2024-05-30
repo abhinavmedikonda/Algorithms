@@ -65,48 +65,30 @@ namespace Algorithms.LinkedList
          */
         static SinglyLinkedListNode mergeSortedLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2)
         {
-            SinglyLinkedListNode result;
-
-            if (head1.data < head2.data)
-            {
-                result = head1;
-                head1 = head1.next;
-            }
-            else
-            {
-                result = head2;
-                head2 = head2.next;
-            }
-
-            var buffer = result;
-
-            while (head1 != null && head2 != null)
-            {
-                if (head1.data < head2.data)
-                {
-                    buffer.next = head1;
+            var result = new SinglyLinkedListNode(default);
+            var node = result;
+            
+            while(head1 != null && head2 != null){
+                if(head1.data < head2.data){
+                    node.next = head1;
                     head1 = head1.next;
                 }
-                else
-                {
-                    buffer.next = head2;
+                else{
+                    node.next = head2;
                     head2 = head2.next;
                 }
-
-                buffer = buffer.next;
-
+                
+                node = node.next;
             }
 
-            if (head1 != null)
-            {
-                buffer.next = head1;
+            if(head1 != null){
+                node.next = head1;
             }
-            else
-            {
-                buffer.next = head2;
+            else{
+                node.next = head2;
             }
-
-            return result;
+            
+            return result.next;
         }
 
 /*
@@ -120,8 +102,8 @@ namespace Algorithms.LinkedList
 4
 */
 
-        //static void Main(string[] args)
-        //{
+        // static void Main(string[] args)
+        // {
         //    int tests = Convert.ToInt32(Console.ReadLine());
 
         //    for (int testsItr = 0; testsItr < tests; testsItr++)
@@ -153,6 +135,6 @@ namespace Algorithms.LinkedList
         //    }
 
         //    Console.Read();
-        //}
+        // }
     }
 }
