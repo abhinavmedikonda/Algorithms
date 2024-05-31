@@ -29,7 +29,6 @@ namespace Algorithms.Switch
                         break;
                     default:
                         return "NO";
-                        break;
                 }
             }
         
