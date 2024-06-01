@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using item = (int value, int index); //annonymous entity
 
 namespace Algorithms.Tuple
 {
@@ -10,36 +11,26 @@ namespace Algorithms.Tuple
         /// Complete the 'icecreamParlor' function below
         public static List<int> indexesOfTargetSum(int m, List<int> arr)
         {
-            var tupleList = new List<Tuple<int, int>>();
-
-            for (int i = 0; i < arr.Count; i++)
-            {
-                tupleList.Add(new Tuple<int, int>(arr[i], i));
+            var itemsList = new List<item>();
+        
+            for(int i=1; i<=arr.Count; i++){
+                itemsList.Add(new item{value = arr[i-1], index = i});
+            }
+            
+            itemsList.Sort((a, b) => a.value < b.value ? -1 : 1);
+            // itemsList = itemsList.OrderBy(x => x.value).ToList();
+            
+            int l=0, r=itemsList.Count-1;
+            
+            while(l<r){
+                if(itemsList[l].value+itemsList[r].value < m) l++;
+                else if(itemsList[l].value+itemsList[r].value > m) r--;
+                else break;
             }
 
-            var sortedlist = tupleList.OrderBy(x => x.Item1).ToList();
-
-
-            int l = 0, r = arr.Count - 1;
-
-            while (l < r)
-            {
-                if (sortedlist[l].Item1 + sortedlist[r].Item1 > m)
-                {
-                    r--;
-                }
-                else if (sortedlist[l].Item1 + sortedlist[r].Item1 < m)
-                {
-                    l++;
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            var result = new List<int> { sortedlist[l].Item2, sortedlist[r].Item2 };
+            var result = new List<int>{itemsList[l].index, itemsList[r].index};
             result.Sort();
+
             return result;
         }
 
@@ -52,8 +43,8 @@ namespace Algorithms.Tuple
 8
 2 1 9 4 4 56 90 3
 */
-        //public static void Main(string[] args)
-        //{
+        // public static void Main(string[] args)
+        // {
         //    int t = Convert.ToInt32(Console.ReadLine().Trim());
 
         //    for (int tItr = 0; tItr < t; tItr++)
@@ -70,7 +61,7 @@ namespace Algorithms.Tuple
         //    }
 
         //    Console.Read();
-        //}
+        // }
     }
 
 
