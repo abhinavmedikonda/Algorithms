@@ -6,8 +6,7 @@ namespace Algorithms.Files
 {
     public class ReadWrite
     {
-        public static void Main(string[] args)
-        {
+        private static void ReadWriteFile(){
             Console.WriteLine(Environment.CurrentDirectory);
             string[] lines = File.ReadAllLines("abc.txt");//reads from current directory if path is not given
             foreach (var item in lines)
@@ -21,7 +20,12 @@ namespace Algorithms.Files
 
             Console.WriteLine($"test{Environment.NewLine}it");
 
-            Console.Read(); 
+            Console.Read();
         }
+
+        // public static void Main(string[] args)
+        // {
+        //     ReadWriteFile();
+        // }
     }
 }
