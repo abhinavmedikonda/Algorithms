@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using item = (int value, int index); //annonymous entity
+using item = (int value, int index); //anonymous entity
 
 namespace Algorithms.Tuple
 {
