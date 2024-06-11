@@ -24,13 +24,13 @@ namespace Algorithms.Loops
                     sum += petrolpumps[index][0] - petrolpumps[index][1];
                     if (sum < 0)
                     {
-                        goto loop1;
+                        goto loop1; //go to specific code
                     }
                 }
 
                 return i;
 
-            loop1:;
+            loop1:; //go to specific code
             }
 
             return 0;
