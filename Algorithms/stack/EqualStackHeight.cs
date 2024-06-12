@@ -14,20 +14,26 @@ namespace Algorithms.Stack
 
         public static int EqualStacks(List<int> h1, List<int> h2, List<int> h3)
         {
-            Stack<int> s1 = new Stack<int>(new List<int> { 0 }), s2 = new Stack<int>(new List<int> { 0 }), s3 = new Stack<int>(new List<int> { 0 });
-
-            for (int i = h1.Count - 1; i >= 0; i--) s1.Push(s1.Peek() + h1[i]);
-            for (int i = h2.Count - 1; i >= 0; i--) s2.Push(s2.Peek() + h2[i]);
-            for (int i = h3.Count - 1; i >= 0; i--) s3.Push(s3.Peek() + h3[i]);
-
-            while (Math.Max(s1.Peek(), Math.Max(s2.Peek(), s3.Peek())) != Math.Min(s1.Peek(), Math.Min(s2.Peek(), s3.Peek())))
-            {
-                if (s1.Peek() > s2.Peek() || s1.Peek() > s3.Peek()) s1.Pop();
-                if (s2.Peek() > s1.Peek() || s2.Peek() > s3.Peek()) s2.Pop();
-                if (s3.Peek() > s1.Peek() || s3.Peek() > s2.Peek()) s3.Pop();
+            int h1Sum = h1.Sum(), h2Sum = h2.Sum(), h3Sum = h3.Sum();
+        
+            while(h1Sum!=h2Sum || h2Sum!=h3Sum){
+                var min = Math.Min(h1Sum,Math.Min(h2Sum, h3Sum));
+                
+                if(h1Sum > min){
+                    h1Sum -= h1[0];
+                    h1.RemoveAt(0);
+                }
+                if(h2Sum > min){
+                    h2Sum -= h2[0];
+                    h2.RemoveAt(0);
+                }
+                if(h3Sum > min){
+                    h3Sum -= h3[0];
+                    h3.RemoveAt(0);
+                }
             }
-
-            return s1.Pop();
+            
+            return h1Sum;
         }
 
 /*

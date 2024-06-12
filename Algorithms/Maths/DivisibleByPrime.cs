@@ -13,13 +13,14 @@ namespace Algorithms.Maths
 
         public static List<int> divisibleByPrimeSequence(List<int> numbers, int q)
         {
-            int ind = 0;
+            int ind = 0, primeNumber = 2;
             var result = new List<int>();
-            var primeNumbers = new Queue<int>(getPrimeNumbers(q));
+            // var primeNumbers = new Queue<int>(getPrimeNumbers(q));
 
             while (ind < q)
             {
-                var primeNumber = primeNumbers.Dequeue();
+                primeNumber = getNextPrimeNumber(primeNumber);
+                // primeNumber = primeNumbers.Dequeue();
                 for (int i = 0; i < numbers.Count; i++)
                 {
                     if (numbers[i] % primeNumber == 0)
@@ -34,6 +35,22 @@ namespace Algorithms.Maths
 
             result.AddRange(numbers);
             return result;
+        }
+
+        private static int getNextPrimeNumber(int number){
+            var prime = number+1;
+
+            for(; prime<=int.MaxValue; prime++){
+                for(int j=2; j<=Math.Sqrt(prime); j++){
+                    if(prime%j == 0) goto firstLoop;
+                }
+
+                return prime;
+
+                firstLoop:;
+            }
+            
+            return -1;
         }
 
         private static List<int> getPrimeNumbers(int count)
