@@ -17,7 +17,7 @@ public class Conversions
         Console.Read();
     }
 
-    public static void Main(string[] args){
-        Method();
-    }
+    // public static void Main(string[] args){
+    //     Method();
+    // }
 }
