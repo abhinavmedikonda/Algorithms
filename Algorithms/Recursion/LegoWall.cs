@@ -4,82 +4,89 @@ using System.Linq;
 
 namespace Algorithms.Recursion
 {
+    /*
+        find the number of valid formations with below criteria, given length and height
+        - The wall should not have any holes in it.
+        - The wall you build should be one solid structure, so there should not be a straight vertical break across all rows of bricks.
+        - The bricks must be laid horizontally.
+    */
     public class LegoWall
     {
+        // public static int legoBlocks(int n, int m)
+        // {
+        //     List<int> lego = new List<int> { 0 };
+
+        //     return recursiveLegoBlocks1Row(m, lego);
+        // }
+
+        // private static int recursiveLegoBlocks1Row(int m, List<int> lego)
+        // {
+        //     int filled = lego[lego.Count - 1];
+        //     int total = 0;
+
+        //     for (int size = 1; size <= m - filled && size <= 4; size++)
+        //     {
+
+        //         if (filled + size == m)
+        //         {
+        //             Console.Write(string.Join(", ", lego));
+        //             Console.Write($", {filled+size}\n");
+        //             return total + 1;
+        //         }
+
+        //         lego.Add(filled + size);
+
+        //         total += recursiveLegoBlocks1Row(m, lego);
+        //         lego.RemoveAt(lego.Count - 1);
+        //     }
+
+        //     return total;
+        // }
+
         public static int legoBlocks(int n, int m)
         {
-            List<int> lego = new List<int> { 0 };
-
-            return recursiveLegoBlocks1Row(m, lego);
+           List<List<int>> lego = new List<List<int>>();
+           for (int i = 0; i < n; i++)
+           {
+               lego.Add(new List<int> { 0 });
+           }
+           return recursiveLegoBlocks(n, m, lego);
         }
 
-        private static int recursiveLegoBlocks1Row(int m, List<int> lego)
+        private static int recursiveLegoBlocks(int n, int m, List<List<int>> lego)
         {
-            int filled = lego[lego.Count - 1];
             int total = 0;
 
-            for (int size = 1; size <= m - filled && size <= 4; size++)
+            for (int i = 0; i < n; i++)
             {
-
-                if (filled + size == m)
+                int filled = lego[i][lego[i].Count - 1];
+                bool change = false;
+                for (int size = 1; size <= m - filled && size <= 4; size++)
                 {
-                    return total + 1;
+
+                    if (filled + size == m && i == n - 1)
+                    {
+                        return total + 1;
+                    }
+                    if (i == n-1 && lego.Take(n-1).All(x => x.Contains(filled+size)))
+                    {
+                        continue;
+                    }
+
+                    change = true;
+                    lego[i].Add(filled + size);
+                    total += recursiveLegoBlocks(n, m, lego);
+                    lego[i].RemoveAt(lego[i].Count-1);
                 }
 
-                lego.Add(filled + size);
-                total += recursiveLegoBlocks1Row(m, lego);
-                lego.RemoveAt(lego.Count - 1);
+                if (change)
+                {
+                    return total;
+                }
             }
 
             return total;
         }
-
-        //public static int legoBlocks(int n, int m)
-        //{
-        //    List<List<int>> lego = new List<List<int>>();
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        lego.Add(new List<int> { 0 });
-        //    }
-        //    return recursiveLegoBlocks(n, m, lego);
-        //}
-
-//{
-//    List<List<int>> lego = new List<List<int>>();
-//    l.ForEach(x => lego.Add(new List<int>(x)));
-
-//    int total = 0;
-
-//    for (int i = 0; i < n; i++)
-//    {
-//        int filled = lego[i][lego[i].Count - 1];
-//        bool change = false;
-//        for (int size = 1; size <= m - filled && size <= 4; size++)
-//        {
-
-//            if (filled + size == m && i == n - 1)
-//            {
-//                return total + 1;
-//            }
-//            if (i == n-1 && lego.Take(n-1).All(x => x.Contains(filled+size)))
-//            {
-//                continue;
-//            }
-
-//            change = true;
-//            lego[i].Add(filled + size);
-//            total += recursiveLegoBlocks(n, m, lego);
-//            lego[i].RemoveAt(lego[i].Count-1);
-//        }
-
-//        if (change)
-//        {
-//            return total;
-//        }
-//    }
-
-//    return total;
-//}
 
 /*
 6
@@ -91,8 +98,8 @@ namespace Algorithms.Recursion
 7 4
 */
 
-        //public static void Main(string[] args)
-        //{
+        // public static void Main(string[] args)
+        // {
         //    int t = Convert.ToInt32(Console.ReadLine().Trim());
 
         //    for (int tItr = 0; tItr < t; tItr++)
@@ -110,7 +117,7 @@ namespace Algorithms.Recursion
         //    }
 
         //    Console.Read();
-        //}
+        // }
 
     }
 }
