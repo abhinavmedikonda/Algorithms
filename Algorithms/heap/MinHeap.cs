@@ -73,37 +73,37 @@ namespace Algorithms.Heap
         /// 2. delete number from heap
         /// 3. print the minimum number in the heap
         /// </summary>
-        static void Main(String[] args)
-        {
-            var heap = new List<int>();
+        // static void Main(String[] args)
+        // {
+        //     var heap = new List<int>();
         
-            var operations = Convert.ToInt32(Console.ReadLine());
+        //     var operations = Convert.ToInt32(Console.ReadLine());
             
-            for(int i=0; i<operations; i++){
-                var input = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
-                switch(input[0]){
-                    case 1:
-                        heap.Add(input[1]);
-                        MinHeapifyUp(heap, heap.Count-1);
-                        break;
-                    case 2:
-                        var index = heap.FindIndex(x => x == input[1]);
-                        SwapItemsWithIndex(heap, index, heap.Count-1);
-                        heap.RemoveAt(heap.Count-1);
-                        if(index == heap.Count) continue;
-                        if(heap[index] < input[1]){
-                            MinHeapifyUp(heap, index);
-                        }
-                        else{
-                            MinHeapifyDown(heap, index);
-                        }
+        //     for(int i=0; i<operations; i++){
+        //         var input = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+        //         switch(input[0]){
+        //             case 1:
+        //                 heap.Add(input[1]);
+        //                 MinHeapifyUp(heap, heap.Count-1);
+        //                 break;
+        //             case 2:
+        //                 var index = heap.FindIndex(x => x == input[1]);
+        //                 SwapItemsWithIndex(heap, index, heap.Count-1);
+        //                 heap.RemoveAt(heap.Count-1);
+        //                 if(index == heap.Count) continue;
+        //                 if(heap[index] < input[1]){
+        //                     MinHeapifyUp(heap, index);
+        //                 }
+        //                 else{
+        //                     MinHeapifyDown(heap, index);
+        //                 }
             
-                        break;
-                    case 3:
-                        Console.WriteLine(heap[0]);
-                        break;
-                }
-            }
-        }
+        //                 break;
+        //             case 3:
+        //                 Console.WriteLine(heap[0]);
+        //                 break;
+        //         }
+        //     }
+        // }
     }
 }
