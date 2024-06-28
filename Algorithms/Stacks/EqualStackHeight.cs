@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.Stack
+namespace Algorithms.Stacks
 {
     public class EqualStackHeight
     {
