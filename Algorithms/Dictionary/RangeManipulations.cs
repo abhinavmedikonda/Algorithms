@@ -4,6 +4,10 @@ using System.Linq;
 
 namespace Algorithms.Dictionary;
 
+/// <summary>
+/// given a list of operations, add given value to a range of 1-indexed array
+/// and return the maximum value in the array after all the operations
+/// </summary>
 public class RangeManipulations
 {
     public static long Manipulate(int n, List<List<int>> queries)
