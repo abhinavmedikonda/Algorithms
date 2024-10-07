@@ -6,6 +6,8 @@ using System.Text;
 
 namespace Algorithms;
 
+// dotnet run --project ./algorithms
+
 class Result
 {
 }
