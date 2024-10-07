@@ -50,16 +50,16 @@ class MinSwapsToSort
 3 4 2 5 1
 */
 
-    public static void Main(string[] args)
-    {
-        int n = Convert.ToInt32(Console.ReadLine().Trim());
+    // public static void Main(string[] args)
+    // {
+    //     int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-        List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
+    //     List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
 
-        int result = MinSwapsToSort.minSwapsToSort(arr);
+    //     int result = MinSwapsToSort.minSwapsToSort(arr);
 
-        Console.WriteLine(result);
+    //     Console.WriteLine(result);
 
-        Console.Read();
-    }
+    //     Console.Read();
+    // }
 }
