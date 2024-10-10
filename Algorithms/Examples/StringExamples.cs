@@ -13,6 +13,10 @@ public class StringExamples
         str = string.Concat(Enumerable.Repeat("123", 3)); //repeat a string
         Console.WriteLine(str);
 
+        // to compare 2 strings for dictionary sequence
+        Console.WriteLine(string.Compare("abc", "123"));
+        Console.WriteLine(string.Compare("00123", "123"));
+
         Console.Read();
     }
 
