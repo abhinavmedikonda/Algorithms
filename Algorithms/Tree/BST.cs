@@ -14,13 +14,13 @@ public class BST {
         var result = new BTree{data = theList[0]};
 
         for(int i=1; i<theList.Count; i++){
-            addBTree(result, theList[i]);
+            addNode(result, theList[i]);
         }
 
         return result;
     }
 
-    public static void addBTree(BTree theBTree, int theData){
+    private static void addNode(BTree theBTree, int theData){
         while(theBTree != null){
             if(theData == theBTree.data){
                 return;
