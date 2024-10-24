@@ -7,11 +7,9 @@ namespace Algorithms.Tree
 {
     public class LowestCommonAncestor {
         public static int lowestCommonAncestor(BTree root, int value1, int value2){
-            if(root == null){
-                return -1;
-            }
+            var result = lowestCommonAncestorRecur(root, value1, value2);
 
-            return lowestCommonAncestorRecur(root, value1, value2).data;
+            return result == null ? -1 : result.data;
         }
 
         private static BTree lowestCommonAncestorRecur(BTree node, int value1, int value2){
