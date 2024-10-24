@@ -32,6 +32,7 @@ namespace Algorithms.Tree
 /*
 6
 3 5 2 7 4 6
+4 7
 
   3
 2   5
@@ -39,14 +40,14 @@ namespace Algorithms.Tree
       6
 */
 
-        public static void Main(string[] args){
-            var n = int.Parse(Console.ReadLine());
-            var numbers = Console.ReadLine().Split(' ').ToList().Select(x => int.Parse(x)).ToList();
-            var values = Console.ReadLine().Split(' ');
+        // public static void Main(string[] args){
+        //     var n = int.Parse(Console.ReadLine());
+        //     var numbers = Console.ReadLine().Split(' ').ToList().Select(x => int.Parse(x)).ToList();
+        //     var values = Console.ReadLine().Split(' ');
             
-            Console.WriteLine(lowestCommonAncestor(BST.getBST(numbers), int.Parse(values[0]), int.Parse(values[1])));
+        //     Console.WriteLine(lowestCommonAncestor(BST.getBST(numbers), int.Parse(values[0]), int.Parse(values[1])));
 
-            Console.Read();
-        }
+        //     Console.Read();
+        // }
     }
 }
