@@ -36,7 +36,7 @@ public class StrongPassword
             }
         }
         
-        var flags = new List<bool>{ isD, isL, isU, isS }.Count(x => x == false);
+        var flags = new List<bool>{ isD, isL, isU, isS }.Count(x => !x);
         
         return flags > 6-password.Length ? flags : 6-password.Length;
     }
@@ -46,13 +46,13 @@ public class StrongPassword
 A98#+
 */
 
-    public static void Main(string[] args)
-    {
-        int n = Convert.ToInt32(Console.ReadLine().Trim());
-        string password = Console.ReadLine();
-        int answer = StrongPassword.minimumNumber(n, password);
-        Console.WriteLine(answer);
-        Console.Read();
-    }
+    // public static void Main(string[] args)
+    // {
+    //     int n = Convert.ToInt32(Console.ReadLine().Trim());
+    //     string password = Console.ReadLine();
+    //     int answer = StrongPassword.minimumNumber(n, password);
+    //     Console.WriteLine(answer);
+    //     Console.Read();
+    // }
 
 }

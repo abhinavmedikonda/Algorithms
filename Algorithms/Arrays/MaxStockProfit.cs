@@ -2,37 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.Arrays
+
+namespace Algorithms.Arrays;
+
+public class MaxStockProfit
 {
-    public class MaxStockProfit
+
+    /*
+    * Find maximum profit earned by buying and selling shares any number of times.
+    */
+    public static List<int> maxStockProfit(List<int> arr)
     {
+        int lastMin = arr[0], last = arr[0], profit = 0;
 
-        /*
-         * Find maximum profit earned by buying and selling shares any number of times.
-         */
-
-        public static List<int> maxStockProfit(List<int> arr)
+        for (int i = 1; i < arr.Count; i++)
         {
-            int lastMin = arr[0], last = arr[0], profit = 0;
-
-            for (int i = 1; i < arr.Count; i++)
+            if(arr[i] < arr[i-1])
             {
-                if(arr[i] < arr[i-1])
-                {
-                    profit += arr[i - 1] - lastMin;
-                    lastMin = arr[i];
-                }
-
-                last = arr[i];
-
-                if(i == arr.Count - 1)
-                {
-                    profit += arr[i] - lastMin;
-                }
+                profit += arr[i - 1] - lastMin;
+                lastMin = arr[i];
             }
 
-            return new List<int> { profit };
+            last = arr[i];
+
+            if(i == arr.Count - 1)
+            {
+                profit += arr[i] - lastMin;
+            }
         }
+
+        return new List<int> { profit };
+    }
 
 /*
 2 
@@ -42,22 +42,21 @@ namespace Algorithms.Arrays
 10 8 6 5 4 2
 */
 
-        //public static void Main(string[] args)
-        //{
-        //    int t = Convert.ToInt32(Console.ReadLine().Trim());
+    //public static void Main(string[] args)
+    //{
+    //    int t = Convert.ToInt32(Console.ReadLine().Trim());
 
-        //    for (int tItr = 0; tItr < t; tItr++)
-        //    {
-        //        int n = Convert.ToInt32(Console.ReadLine().Trim());
+    //    for (int tItr = 0; tItr < t; tItr++)
+    //    {
+    //        int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-        //        List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
+    //        List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
 
-        //        List<int> result = MaxStockProfit.maxStockProfit(arr);
+    //        List<int> result = MaxStockProfit.maxStockProfit(arr);
 
-        //        Console.WriteLine(String.Join(" ", result));
-        //    }
+    //        Console.WriteLine(String.Join(" ", result));
+    //    }
 
-        //    Console.Read();
-        //}
-    }
+    //    Console.Read();
+    //}
 }

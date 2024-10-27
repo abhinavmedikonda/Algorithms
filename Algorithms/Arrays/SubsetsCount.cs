@@ -2,49 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.Arrays
+
+namespace Algorithms.Arrays;
+
+public class SubsetsCount
 {
-    public class SubsetsCount
+
+    /*
+    * given a list of weights and weight limit k
+    * find how many no.of subsets can pass the criteria max(subset)-min(subset) <= k
+    */
+    public static long countPossibleSegments(int k, List<int> weights)
     {
+        var result = 0;
 
-        /*
-         * given a list of weights and weight limit k
-         * find how many no.of subsets can pass the criteria max(subset)-min(subset) <= k
-         */
-
-        public static long countPossibleSegments(int k, List<int> weights)
+        for (int i = 0; i < weights.Count; i++)
         {
-            var result = 0;
+            int max = int.MinValue, min = int.MaxValue;
 
-            for (int i = 0; i < weights.Count; i++)
+            for (int j = i; j < weights.Count; j++)
             {
-                int max = int.MinValue, min = int.MaxValue;
-
-                for (int j = i; j < weights.Count; j++)
-                {
-                    if (weights[j] > max) max = weights[j];
-                    if (weights[j] < min) min = weights[j];
-                    if (max - min <= k) result++;
-                }
+                if (weights[j] > max) max = weights[j];
+                if (weights[j] < min) min = weights[j];
+                if (max - min <= k) result++;
             }
-
-            return result;
         }
 
-        //public static long countPossibleSegments(int k, List<int> weights)
-        //{
-        //    var result = 0;
+        return result;
+    }
 
-        //    for (int i = 0; i < weights.Count; i++)
-        //    {
-        //        for (int j = i; j < weights.Count; j++)
-        //        {
-        //            if (weights.GetRange(i, j - i + 1).Max() - weights.GetRange(i, j - i + 1).Min() <= k) result++;
-        //        }
-        //    }
+    //public static long countPossibleSegments(int k, List<int> weights)
+    //{
+    //    var result = 0;
 
-        //    return result;
-        //}
+    //    for (int i = 0; i < weights.Count; i++)
+    //    {
+    //        for (int j = i; j < weights.Count; j++)
+    //        {
+    //            if (weights.GetRange(i, j - i + 1).Max() - weights.GetRange(i, j - i + 1).Min() <= k) result++;
+    //        }
+    //    }
+
+    //    return result;
+    //}
 
 /*
 3
@@ -54,25 +54,24 @@ namespace Algorithms.Arrays
 4
 */
 
-        //public static void Main(string[] args)
-        //{
-        //    int k = Convert.ToInt32(Console.ReadLine().Trim());
+    //public static void Main(string[] args)
+    //{
+    //    int k = Convert.ToInt32(Console.ReadLine().Trim());
 
-        //    int weightsCount = Convert.ToInt32(Console.ReadLine().Trim());
+    //    int weightsCount = Convert.ToInt32(Console.ReadLine().Trim());
 
-        //    List<int> weights = new List<int>();
+    //    List<int> weights = new List<int>();
 
-        //    for (int i = 0; i < weightsCount; i++)
-        //    {
-        //        int weightsItem = Convert.ToInt32(Console.ReadLine().Trim());
-        //        weights.Add(weightsItem);
-        //    }
+    //    for (int i = 0; i < weightsCount; i++)
+    //    {
+    //        int weightsItem = Convert.ToInt32(Console.ReadLine().Trim());
+    //        weights.Add(weightsItem);
+    //    }
 
-        //    long result = SubsetsCount.countPossibleSegments(k, weights);
+    //    long result = SubsetsCount.countPossibleSegments(k, weights);
 
-        //    Console.WriteLine(result);
+    //    Console.WriteLine(result);
 
-        //    Console.Read();
-        //}
-    }
+    //    Console.Read();
+    //}
 }
