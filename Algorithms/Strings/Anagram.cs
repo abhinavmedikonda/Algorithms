@@ -9,9 +9,8 @@ public class Anagram
 {
 
     /*
-        * determine minimum no.of character changes required to make left half and right half of given string anagrams
-        */
-
+    * determine minimum no.of character changes required to make left half and right half of given string anagrams
+    */
     public static int anagram(string s)
     {
         if (s.Length % 2 == 1)
