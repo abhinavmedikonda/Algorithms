@@ -20,6 +20,9 @@ public class Conversions
         var digit = char.GetNumericValue(str[0]);
         Console.WriteLine(digit);
 
+        //number to string format
+        Console.WriteLine(12.23f.ToString("0.0000"));
+
         Console.Read();
     }
 

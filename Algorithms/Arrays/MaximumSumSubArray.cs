@@ -8,10 +8,9 @@ namespace Algorithms.Arrays;
 public class MaximumSumSubArray
 {
 
-    /*
-    * Return maxSumSubArray and maxSumSubSequence for given array.
-    */
-
+    /// <summary>
+    /// Return maxSumSubArray and maxSumSubSequence for given array.
+    /// </summary>
     public static List<int> maxSumSubArray(List<int> arr)
     {
         int sum = 0, max = int.MinValue, sequenceMax = 0;

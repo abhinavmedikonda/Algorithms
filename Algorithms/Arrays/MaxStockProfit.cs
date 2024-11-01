@@ -8,9 +8,9 @@ namespace Algorithms.Arrays;
 public class MaxStockProfit
 {
 
-    /*
-    * Find maximum profit earned by buying and selling shares any number of times.
-    */
+    /// <summary>
+    /// Find maximum profit earned by buying and selling shares any number of times.
+    /// </summary>
     public static List<int> maxStockProfit(List<int> arr)
     {
         int profit = 0;

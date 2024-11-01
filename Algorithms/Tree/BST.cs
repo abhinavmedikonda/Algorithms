@@ -11,7 +11,7 @@ public class BST {
             return null;
         }
         
-        var result = new BTree{data = theList[0]};
+        var result = new BTree{value = theList[0]};
 
         for(int i=1; i<theList.Count; i++){
             addNode(result, theList[i]);
@@ -22,12 +22,12 @@ public class BST {
 
     private static void addNode(BTree theBTree, int theData){
         while(theBTree != null){
-            if(theData == theBTree.data){
+            if(theData == theBTree.value){
                 return;
             }
-            if(theData > theBTree.data){
+            if(theData > theBTree.value){
                 if(theBTree.right == null){
-                    theBTree.right = new BTree{data = theData};
+                    theBTree.right = new BTree{value = theData};
                     return;
                 }
 
@@ -35,7 +35,7 @@ public class BST {
             }
             else{
                 if(theBTree.left == null){
-                    theBTree.left = new BTree{data = theData};
+                    theBTree.left = new BTree{value = theData};
                     return;
                 }
 
@@ -53,42 +53,13 @@ public class BST {
     //     var n = int.Parse(Console.ReadLine());
     //     var input = Console.ReadLine().Split(' ').ToList().Select(x => int.Parse(x)).ToList();
         
-    //     inOrder(getBST(input)); // inOrder for a BST will be sorted just like the name
+    //     BTree.inOrder(getBST(input)); // inOrder for a BST will be sorted just like the name
     //     Console.WriteLine();
-    //     preOrder(getBST(input));
+    //     BTree.preOrder(getBST(input));
     //     Console.WriteLine();
-    //     postOrder(getBST(input));
+    //     BTree.postOrder(getBST(input));
 
     //     Console.Read();
     // }
 
-    public static void inOrder(BTree theBTree){
-        if(theBTree == null){
-            return;
-        }
-
-        inOrder(theBTree.left);
-        Console.Write($"{theBTree.data} ");
-        inOrder(theBTree.right);
-    }
-
-    public static void preOrder(BTree theBTree){
-        if(theBTree == null){
-            return;
-        }
-
-        Console.Write($"{theBTree.data} ");
-        preOrder(theBTree.left);
-        preOrder(theBTree.right);
-    }
-
-    public static void postOrder(BTree theBTree){
-        if(theBTree == null){
-            return;
-        }
-
-        postOrder(theBTree.left);
-        postOrder(theBTree.right);
-        Console.Write($"{theBTree.data} ");
-    }
 }

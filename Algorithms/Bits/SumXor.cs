@@ -58,9 +58,9 @@ namespace Algorithms.Bits
             return result;
         }
 
-        /*
-        5
-        */
+/*
+5
+*/
 
         // public static void Main(string[] args)
         // {

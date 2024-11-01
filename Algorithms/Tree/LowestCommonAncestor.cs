@@ -9,7 +9,7 @@ namespace Algorithms.Tree
         public static int lowestCommonAncestor(BTree root, int value1, int value2){
             var result = lowestCommonAncestorRecur(root, value1, value2);
 
-            return result == null ? -1 : result.data;
+            return result == null ? -1 : result.value;
         }
 
         private static BTree lowestCommonAncestorRecur(BTree node, int value1, int value2){
@@ -20,7 +20,7 @@ namespace Algorithms.Tree
             var left = node.left == null ? null : lowestCommonAncestorRecur(node.left, value1, value2);
             var right = node.right == null ? null : lowestCommonAncestorRecur(node.right, value1, value2);
 
-            if(left != null && right != null || node.data == value1 || node.data == value2){
+            if(left != null && right != null || node.value == value1 || node.value == value2){
                 return node;
             }
 
