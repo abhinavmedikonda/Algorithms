@@ -27,36 +27,36 @@ public class TextEditor
 3 1
 */
 
-    //static void Main(String[] args)
-    //{
-    //    int doCount = Convert.ToInt32(Console.ReadLine().Trim());
-    //    StringBuilder sb = new StringBuilder();
-    //    Stack<string> stack = new Stack<string>();
+	//static void Main(String[] args)
+	//{
+	//	int doCount = Convert.ToInt32(Console.ReadLine().Trim());
+	//	StringBuilder sb = new StringBuilder();
+	//	Stack<string> stack = new Stack<string>();
 
-    //    for (int i = 0; i < doCount; i++)
-    //    {
-    //        var operation = Console.ReadLine().Trim().Split(' ').ToList();
+	//	for (int i = 0; i < doCount; i++)
+	//	{
+	//		var operation = Console.ReadLine().Trim().Split(' ').ToList();
 
-    //        switch (operation[0])
-    //        {
-    //            case "1":
-    //                stack.Push(sb.ToString());
-    //                sb.Append(operation[1]);
-    //                break;
-    //            case "2":
-    //                stack.Push(sb.ToString());
-    //                sb.Remove(sb.Length - Convert.ToInt32(operation[1]), Convert.ToInt32(operation[1]));
-    //                break;
-    //            case "3":
-    //                Console.WriteLine(sb.ToString().Substring(Convert.ToInt32(operation[1]) - 1, 1));
-    //                break;
-    //            case "4":
-    //                sb.Clear();
-    //                sb.Append(stack.Pop());
-    //                break;
-    //        }
-    //    }
+	//		switch (operation[0])
+	//		{
+	//			case "1":
+	//				stack.Push(sb.ToString());
+	//				sb.Append(operation[1]);
+	//				break;
+	//			case "2":
+	//				stack.Push(sb.ToString());
+	//				sb.Remove(sb.Length - Convert.ToInt32(operation[1]), Convert.ToInt32(operation[1]));
+	//				break;
+	//			case "3":
+	//				Console.WriteLine(sb.ToString().Substring(Convert.ToInt32(operation[1]) - 1, 1));
+	//				break;
+	//			case "4":
+	//				sb.Clear();
+	//				sb.Append(stack.Pop());
+	//				break;
+	//		}
+	//	}
 
-    //    Console.Read();
-    //}
+	//	Console.Read();
+	//}
 }

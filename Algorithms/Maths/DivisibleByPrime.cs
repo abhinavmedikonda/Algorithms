@@ -6,104 +6,104 @@ namespace Algorithms.Maths;
 public class DivisibleByPrime
 {
 
-    /*
-    * return given list of numbers in thir prime number divisible sequence
-    */
-    public static List<int> divisibleByPrimeSequence(List<int> numbers, int q)
-    {
-        int ind = 0, primeNumber = 2;
-        var result = new List<int>();
-        // var primeNumbers = new Queue<int>(getPrimeNumbers(q));
+	/*
+	* return given list of numbers in thir prime number divisible sequence
+	*/
+	public static List<int> divisibleByPrimeSequence(List<int> numbers, int q)
+	{
+		int ind = 0, primeNumber = 2;
+		var result = new List<int>();
+		// var primeNumbers = new Queue<int>(getPrimeNumbers(q));
 
-        while (ind < q)
-        {
-            primeNumber = getNextPrimeNumber(primeNumber);
-            // primeNumber = primeNumbers.Dequeue();
-            for (int i = 0; i < numbers.Count; i++)
-            {
-                if (numbers[i] % primeNumber == 0)
-                {
-                    result.Add(numbers[i]);
-                    numbers.RemoveAt(i);
-                    i--;
-                }
-            }
-            ind++;
-        }
+		while (ind < q)
+		{
+			primeNumber = getNextPrimeNumber(primeNumber);
+			// primeNumber = primeNumbers.Dequeue();
+			for (int i = 0; i < numbers.Count; i++)
+			{
+				if (numbers[i] % primeNumber == 0)
+				{
+					result.Add(numbers[i]);
+					numbers.RemoveAt(i);
+					i--;
+				}
+			}
+			ind++;
+		}
 
-        result.AddRange(numbers);
-        return result;
-    }
+		result.AddRange(numbers);
+		return result;
+	}
 
-    private static int getNextPrimeNumber(int number){
-        var prime = number+1;
+	private static int getNextPrimeNumber(int number){
+		var prime = number+1;
 
-        for(; prime<=int.MaxValue; prime++){
-            for(int j=2; j<=Math.Sqrt(prime); j++){
-                if(prime%j == 0) goto firstLoop;
-            }
+		for(; prime<=int.MaxValue; prime++){
+			for(int j=2; j<=Math.Sqrt(prime); j++){
+				if(prime%j == 0) goto firstLoop;
+			}
 
-            return prime;
+			return prime;
 
-            firstLoop:;
-        }
-        
-        return -1;
-    }
+			firstLoop:;
+		}
+		
+		return -1;
+	}
 
-    private static List<int> getPrimeNumbers(int count)
-    {
-        var result = new List<int>();
-        int number = 2;
+	private static List<int> getPrimeNumbers(int count)
+	{
+		var result = new List<int>();
+		int number = 2;
 
-        for (int i = 0; i < count; i++)
-        {
-            while (result.Count <= i)
-            {
-                if (isPrimeNumber(number)) result.Add(number);
+		for (int i = 0; i < count; i++)
+		{
+			while (result.Count <= i)
+			{
+				if (isPrimeNumber(number)) result.Add(number);
 
-                number++;
-            }
-        }
+				number++;
+			}
+		}
 
-        return result;
-    }
+		return result;
+	}
 
-    private static bool isPrimeNumber(int number)
-    {
-        if (number <= 1) return false;
-        if (number == 2) return true;
+	private static bool isPrimeNumber(int number)
+	{
+		if (number <= 1) return false;
+		if (number == 2) return true;
 
-        for (int i = 2; i <= (int)Math.Round(Math.Sqrt(number)); i++)
-        {
-            if (number % i == 0)
-            {
-                return false;
-            }
-        }
+		for (int i = 2; i <= (int)Math.Round(Math.Sqrt(number)); i++)
+		{
+			if (number % i == 0)
+			{
+				return false;
+			}
+		}
 
-        return true;
-    }
+		return true;
+	}
 
 /*
 6 3
 3 7 4 6 5 2
 */
 
-    //public static void Main(string[] args)
-    //{
-    //    string[] firstMultipleInput = Console.ReadLine().TrimEnd().Split(' ');
+	//public static void Main(string[] args)
+	//{
+	//	string[] firstMultipleInput = Console.ReadLine().TrimEnd().Split(' ');
 
-    //    int n = Convert.ToInt32(firstMultipleInput[0]);
+	//	int n = Convert.ToInt32(firstMultipleInput[0]);
 
-    //    int q = Convert.ToInt32(firstMultipleInput[1]);
+	//	int q = Convert.ToInt32(firstMultipleInput[1]);
 
-    //    List<int> number = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(numberTemp => Convert.ToInt32(numberTemp)).ToList();
+	//	List<int> number = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(numberTemp => Convert.ToInt32(numberTemp)).ToList();
 
-    //    List<int> result = DivisibleByPrime.divisibleByPrimeSequence(number, q);
+	//	List<int> result = DivisibleByPrime.divisibleByPrimeSequence(number, q);
 
-    //    Console.WriteLine(String.Join("\n", result));
+	//	Console.WriteLine(String.Join("\n", result));
 
-    //    Console.Read();
-    //}
+	//	Console.Read();
+	//}
 }

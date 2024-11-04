@@ -7,22 +7,22 @@ namespace Algorithms.Examples;
 public class HardCode
 {
 
-    private static void Method(){
-        // Dictionary initialization
-        var lookup = new Dictionary<char, char>{{'(', ')'}, {'[', ']'}, {'{', '}'}};
+	private static void Method(){
+		// Dictionary initialization
+		var lookup = new Dictionary<char, char>{{'(', ')'}, {'[', ']'}, {'{', '}'}};
 
-        var intType = 15;
-        var floatType = 15f;
-        var longType = 15l;
-        var doubleType = 15d;
+		var intType = 15;
+		var floatType = 15f;
+		var longType = 15l;
+		var doubleType = 15d;
 
 
 
-        Console.Read();
-    }
+		Console.Read();
+	}
 
-    // public static void Main(string[] args){
-    //     Method();
-    // }
+	// public static void Main(string[] args){
+	//	 Method();
+	// }
 
 }

@@ -2,97 +2,97 @@
 
 namespace Algorithms.LinkedList
 {
-    public class ReverseSinglyLinkedList
-    {
+	public class ReverseSinglyLinkedList
+	{
 
-        class SinglyLinkedListNode
-        {
-            public int data;
-            public SinglyLinkedListNode next;
+		class SinglyLinkedListNode
+		{
+			public int data;
+			public SinglyLinkedListNode next;
 
-            public SinglyLinkedListNode(int nodeData)
-            {
-                this.data = nodeData;
-                this.next = null;
-            }
-        }
+			public SinglyLinkedListNode(int nodeData)
+			{
+				this.data = nodeData;
+				this.next = null;
+			}
+		}
 
-        class SinglyLinkedList
-        {
-            public SinglyLinkedListNode head;
-            public SinglyLinkedListNode tail;
+		class SinglyLinkedList
+		{
+			public SinglyLinkedListNode head;
+			public SinglyLinkedListNode tail;
 
-            public SinglyLinkedList()
-            {
-                this.head = null;
-                this.tail = null;
-            }
+			public SinglyLinkedList()
+			{
+				this.head = null;
+				this.tail = null;
+			}
 
-            public void InsertNode(int nodeData)
-            {
-                SinglyLinkedListNode node = new SinglyLinkedListNode(nodeData);
+			public void InsertNode(int nodeData)
+			{
+				SinglyLinkedListNode node = new SinglyLinkedListNode(nodeData);
 
-                if (this.head == null)
-                {
-                    this.head = node;
-                }
-                else
-                {
-                    this.tail.next = node;
-                }
+				if (this.head == null)
+				{
+					this.head = node;
+				}
+				else
+				{
+					this.tail.next = node;
+				}
 
-                this.tail = node;
-            }
-        }
+				this.tail = node;
+			}
+		}
 
-        static void PrintSinglyLinkedList(SinglyLinkedListNode node, string sep)
-        {
-            while (node != null)
-            {
-                Console.Write(node.data);
+		static void PrintSinglyLinkedList(SinglyLinkedListNode node, string sep)
+		{
+			while (node != null)
+			{
+				Console.Write(node.data);
 
-                node = node.next;
+				node = node.next;
 
-                if (node != null)
-                {
-                    Console.Write(sep);
-                }
-            }
-        }
+				if (node != null)
+				{
+					Console.Write(sep);
+				}
+			}
+		}
 
-        
-        /*
-            * Complete the 'reverse' function below.
-            *
-            * The function is expected to return an INTEGER_SINGLY_LINKED_LIST.
-            * The function accepts INTEGER_SINGLY_LINKED_LIST llist as parameter.
-            */
+		
+		/*
+			* Complete the 'reverse' function below.
+			*
+			* The function is expected to return an INTEGER_SINGLY_LINKED_LIST.
+			* The function accepts INTEGER_SINGLY_LINKED_LIST llist as parameter.
+			*/
 
-        /*
-            * For your reference:
-            *
-            * SinglyLinkedListNode
-            * {
-            *     int data;
-            *     SinglyLinkedListNode next;
-            * }
-            *
-            */
+		/*
+			* For your reference:
+			*
+			* SinglyLinkedListNode
+			* {
+			*	 int data;
+			*	 SinglyLinkedListNode next;
+			* }
+			*
+			*/
 
-        static SinglyLinkedListNode reverse(SinglyLinkedListNode llist)
-        {
-            SinglyLinkedListNode left = null;
+		static SinglyLinkedListNode reverse(SinglyLinkedListNode llist)
+		{
+			SinglyLinkedListNode left = null;
 
-            while (llist != null)
-            {
-                var temp = llist.next;
-                llist.next = left;
-                left = llist;
-                llist = temp;
-            }
+			while (llist != null)
+			{
+				var temp = llist.next;
+				llist.next = left;
+				left = llist;
+				llist = temp;
+			}
 
-            return left;
-        }
+			return left;
+		}
 
 /*
 1
@@ -104,29 +104,29 @@ namespace Algorithms.LinkedList
 5
 */
 
-        //static void Main(string[] args)
-        //{
-        //    int tests = Convert.ToInt32(Console.ReadLine());
+		//static void Main(string[] args)
+		//{
+		//	int tests = Convert.ToInt32(Console.ReadLine());
 
-        //    for (int testsItr = 0; testsItr < tests; testsItr++)
-        //    {
-        //        SinglyLinkedList llist = new SinglyLinkedList();
+		//	for (int testsItr = 0; testsItr < tests; testsItr++)
+		//	{
+		//		SinglyLinkedList llist = new SinglyLinkedList();
 
-        //        int llistCount = Convert.ToInt32(Console.ReadLine());
+		//		int llistCount = Convert.ToInt32(Console.ReadLine());
 
-        //        for (int i = 0; i < llistCount; i++)
-        //        {
-        //            int llistItem = Convert.ToInt32(Console.ReadLine());
-        //            llist.InsertNode(llistItem);
-        //        }
+		//		for (int i = 0; i < llistCount; i++)
+		//		{
+		//			int llistItem = Convert.ToInt32(Console.ReadLine());
+		//			llist.InsertNode(llistItem);
+		//		}
 
-        //        SinglyLinkedListNode llist1 = ReverseSinglyLinkedList.reverse(llist.head);
+		//		SinglyLinkedListNode llist1 = ReverseSinglyLinkedList.reverse(llist.head);
 
-        //        PrintSinglyLinkedList(llist1, " ");
-        //        Console.WriteLine();
-        //    }
+		//		PrintSinglyLinkedList(llist1, " ");
+		//		Console.WriteLine();
+		//	}
 
-        //    Console.Read();
-        //}
-    }
+		//	Console.Read();
+		//}
+	}
 }

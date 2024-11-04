@@ -4,24 +4,24 @@ using System.Linq;
 
 namespace Algorithms.Matrix
 {
-    public class DiagonalDifference
-    {
+	public class DiagonalDifference
+	{
 
-        /*
-         * Given a square matrix, calculate the absolute difference between the sums of its diagonals. 
-         */
+		/*
+		 * Given a square matrix, calculate the absolute difference between the sums of its diagonals. 
+		 */
 
-        public static int diagonalDifference(List<List<int>> arr)
-        {
-            int lr=0, rl=0;
-        
-            for(int i=0; i<arr.Count/2; i++){
-                lr += arr[0+i][0+i] + arr[arr.Count-1-i][arr.Count-1-i];
-                rl += arr[arr.Count-1-i][0+i] + arr[0+i][arr.Count-1-i];
-            }
-            
-            return Math.Abs(lr-rl);
-        }
+		public static int diagonalDifference(List<List<int>> arr)
+		{
+			int lr=0, rl=0;
+		
+			for(int i=0; i<arr.Count/2; i++){
+				lr += arr[0+i][0+i] + arr[arr.Count-1-i][arr.Count-1-i];
+				rl += arr[arr.Count-1-i][0+i] + arr[0+i][arr.Count-1-i];
+			}
+			
+			return Math.Abs(lr-rl);
+		}
 
 /*
 3
@@ -30,23 +30,23 @@ namespace Algorithms.Matrix
 10 8 -12
 */
 
-        // public static void Main(string[] args)
-        // {
-        //    int n = Convert.ToInt32(Console.ReadLine().Trim());
+		// public static void Main(string[] args)
+		// {
+		//	int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-        //    List<List<int>> arr = new List<List<int>>();
+		//	List<List<int>> arr = new List<List<int>>();
 
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        arr.Add(Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList());
-        //    }
+		//	for (int i = 0; i < n; i++)
+		//	{
+		//		arr.Add(Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList());
+		//	}
 
-        //    int result = DiagonalDifference.diagonalDifference(arr);
+		//	int result = DiagonalDifference.diagonalDifference(arr);
 
-        //    Console.WriteLine(result);
-        //    Console.Read();
-        // }
+		//	Console.WriteLine(result);
+		//	Console.Read();
+		// }
 
-    }
+	}
 
 }
