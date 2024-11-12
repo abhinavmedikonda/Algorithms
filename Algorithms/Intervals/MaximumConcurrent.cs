@@ -16,19 +16,31 @@ public static class MaximumConcurrent
 		var start = arr;
 		var end = arr;
 		start.Sort((a, b) => a[0] < b[0] ? -1 : 1);
-		end.Sort((a, b) => a[0] < b[0] ? -1 : 1);
-		var q = new Queue<int>(end.Select(x => x[1]));
+		end.Sort((a, b) => a[1] < b[1] ? -1 : 1);
 
-		int returns=0, concurrent=0, current=0;
+		int returns=0, concurrent=0;
+		// var q = new Queue<int>(end.Select(x => x[1]));
+		// for(int i=0; i<arr.Count-1; i++){
+		// 	concurrent++;
+		// 	returns = Math.Max(returns, concurrent);
+		// 	while(q.Peek() <= start[i][0]){
+		// 		concurrent--;
+		// 		q.Dequeue();
+		// 	}
+		// }
 
-		for(int i=0; i<arr.Count-1; i++){
-			current = start[i][0];
-			concurrent++;
-			returns = Math.Max(returns, concurrent);
-			while(q.Peek() <= current){
-				concurrent--;
-				q.Dequeue();
+		int l=0, r=0;
+		while(l<start.Count){
+			if(start[l][0] <= end[r][1]){
+				concurrent++;
+				l++;
 			}
+			else{
+				concurrent--;
+				r++;
+			}
+
+			returns = Math.Max(returns, concurrent);
 		}
 
 		return returns;

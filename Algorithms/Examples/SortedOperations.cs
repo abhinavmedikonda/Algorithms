@@ -8,7 +8,10 @@ public class SortedOperations
 {
 	private static void Method(){
 		var list = new List<int>{8, 5, 9};
-		var sList = new SortedList<int, int>();
+
+		// customize sortedList sort logic
+		var desc = Comparer<int>.Create((a, b) => a < b ? 1 : -1);
+		var sList = new SortedList<int, int>(desc);
 		foreach(var item in list){
 			if(sList.ContainsKey(item)){
 				sList[item]++;
@@ -33,6 +36,6 @@ public class SortedOperations
 	}
 
 	// public static void Main(string[] args){
-	//	 Method();
+	// 	 Method();
 	// }
 }
