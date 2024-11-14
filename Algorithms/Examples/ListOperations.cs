@@ -9,6 +9,7 @@ public class ListOperations
 	private static void Method(){
 		var list = new List<int>{8, 5, 9};
 		list.AddRange(new List<int>{3, 7, 1}); //add list to existing list
+		var newList = list.Concat(new List<int>{3, 7, 1}); //to return new list
 		list.Remove(8); //remove element
 		list.RemoveAll(x => x>10); //remove all matching
 		var index = list.FindIndex(x => x == 8);
