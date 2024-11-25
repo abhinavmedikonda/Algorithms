@@ -10,7 +10,7 @@ public static class FindIntersections
 
 	/// <summary>
 	/// Find the intersecting intervals in the 2 list of intervals
-	/// below algorithm only works if each intervalsList items are not overlapping
+	/// Note: items in each intervalsList are not overlapping
 	/// </summary>
 	public static List<List<int>> findIntersections(List<List<int>> intervalsA, List<List<int>> intervalsB)
 	{
@@ -22,23 +22,22 @@ public static class FindIntersections
 		while(indexA<intervalsA.Count && indexB<intervalsB.Count){
 			if(intervalsA[indexA][0] > intervalsB[indexB][1]){
 				indexB++;
-				continue;
 			}
-			if(intervalsB[indexB][0] > intervalsA[indexA][1]){
-				indexA++;
-				continue;
-			}
-
-			returns.Add(new List<int>{
-				Math.Max(intervalsA[indexA][0], intervalsB[indexB][0]),
-				Math.Min(intervalsA[indexA][1], intervalsB[indexB][1])
-			});
-
-			if(intervalsA[indexA][1] < intervalsB[indexB][1]){
+			else if(intervalsB[indexB][0] > intervalsA[indexA][1]){
 				indexA++;
 			}
 			else{
-				indexB++;
+				returns.Add(new List<int>{
+					Math.Max(intervalsA[indexA][0], intervalsB[indexB][0]),
+					Math.Min(intervalsA[indexA][1], intervalsB[indexB][1])
+				});
+
+				if(intervalsA[indexA][1] < intervalsB[indexB][1]){
+					indexA++;
+				}
+				else{
+					indexB++;
+				}
 			}
 		}
 
