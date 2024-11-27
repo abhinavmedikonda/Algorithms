@@ -7,8 +7,8 @@ namespace Algorithms.Recursion;
 public class GroupSimilarSides
 {
 	/// <summary>
-	/// given list of rectangle sides
-	/// (a, b) and (c, d) are said to make similarRectangle if a/c equals b/d
+	/// given list of rectangle sides(length, breath)
+	/// sides (a, b) and (c, d) are said to make similarRectangle if a/c equals b/d
 	/// find total number of possible similarRectangles our of given set of sides
 	/// </summary>
 	public static long nearlySimilarRectangles(List<List<long>> sides)
