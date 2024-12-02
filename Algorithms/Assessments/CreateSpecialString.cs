@@ -8,7 +8,7 @@ public class CreateSpecialString
 {
 
 	/// <summary>
-	/// Code Question 2
+	/// amazon Code Question 2
 	/// Developers at Amazon are working on a text generation utility for one of their new products.
 	/// Currently, the utility generates only special strings. A string is special if there are no
 	/// matching adjacent characters. Given a string s of length n, generate a special string of length n

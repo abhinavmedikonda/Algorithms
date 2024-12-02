@@ -8,7 +8,7 @@ public class WatchHistoryScore
 {
 
 	/// <summary>
-	/// Code Question 1
+	/// amazon Code Question 1
 	/// Data analysts at Amazon are studying the trends in movies and shows popular
 	/// on Prime Video in order to enhance the user experience.
 	/// 

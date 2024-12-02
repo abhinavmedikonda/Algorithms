@@ -37,9 +37,9 @@ class EventManagementSystem
         List<string> GetEventAttendeesCountByYears();
     }
 
-    /*
-    ** Create Person, EventInfo and EventManager classes
-    */
+/*
+** Create Person, EventInfo and EventManager classes
+*/
 
     class Person: IPerson{
         public string FirstName {get; set;}
