@@ -6,27 +6,24 @@ namespace Algorithms;
 
 public class SudokuSolve
 {
+
 	// static void Main(string[] args)
 	// {
 	// 	SudokuSolve sudokuSolve = new SudokuSolve();
 
 	// 	char[,] board = sudokuSolve.GetBoard();
 
-	// 	board = sudokuSolve.GetSolution(board);
+	// 	// sudokuSolve.IsSudokuSolvable(board);
+	// 	sudokuSolve.GetSolution(board);
 
-	// 	if(board == null){
-	// 		Console.WriteLine("bad sudoku");
-	// 	}
-	// 	else{
-	// 		for (int i = 0; i < 9; i++)
+	// 	for (int i = 0; i < 9; i++)
+	// 	{
+	// 		for (int j = 0; j < 9; j++)
 	// 		{
-	// 			for (int j = 0; j < 9; j++)
-	// 			{
-	// 				Console.Write(board[i, j]+" ");
-	// 			}
-
-	// 			Console.WriteLine();
+	// 			Console.Write(board[i, j]+" ");
 	// 		}
+
+	// 		Console.WriteLine();
 	// 	}
 	// }
 
