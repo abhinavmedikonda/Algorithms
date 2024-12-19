@@ -7,25 +7,28 @@ namespace Algorithms;
 public class SudokuSolve
 {
 
-	// static void Main(string[] args)
-	// {
-	// 	SudokuSolve sudokuSolve = new SudokuSolve();
+	static void Main(string[] args)
+	{
+		SudokuSolve sudokuSolve = new SudokuSolve();
 
-	// 	char[,] board = sudokuSolve.GetBoard();
+		char[,] board = sudokuSolve.GetBoard();
 
-	// 	// sudokuSolve.IsSudokuSolvable(board);
-	// 	sudokuSolve.GetSolution(board);
+		// sudokuSolve.IsSudokuSolvable(board);
+		sudokuSolve.GetSolution(board);
 
-	// 	for (int i = 0; i < 9; i++)
-	// 	{
-	// 		for (int j = 0; j < 9; j++)
-	// 		{
-	// 			Console.Write(board[i, j]+" ");
-	// 		}
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+				Console.Write(board[i, j] + (j%3==2 ? " " : ""));
+			}
 
-	// 		Console.WriteLine();
-	// 	}
-	// }
+			Console.WriteLine();
+			if(i%3 == 2){
+				Console.WriteLine();
+			}
+		}
+	}
 
 	List<HashSet<int>> rowSets = new List<HashSet<int>>();
 	List<HashSet<int>> columnSets = new List<HashSet<int>>();
@@ -235,7 +238,9 @@ public class SudokuSolve
 			change = checkPossibilities(board, possibilities);
 		}
 
-		return board; //GetSolutionRecur(board, 0, 0, 0);
+		GetSolutionRecur(board, 0, 0, possibilities, 0);
+
+		return board;
 	}
 
 	private bool checkPossibilities(char[,] board, HashSet<char>[,] possibilities){
@@ -363,7 +368,7 @@ public class SudokuSolve
 		}
 	}
 
-	private char[,] GetSolutionRecur(char[,] board, int x, int y, int level){
+	private char[,] GetSolutionRecur(char[,] board, int x, int y, HashSet<char>[,] possibilities, int level){
 		var copy = board.Clone() as char[,];
 		for(int i=x; i<9; i++){
 			for(int j=y; j<9; j++){
@@ -375,9 +380,10 @@ public class SudokuSolve
 				if(copy[i, j] == '.'){
 					var nextX = j==8 ? i+1 : i;
 					var nextY = j==8 ? 0 : j+1;
-					for(int n=1; n<10; n++){
-						copy[i, j] = Convert.ToChar(n+'0');
-						var response = GetSolutionRecur(copy, nextX, nextY, level+1);
+					for(int n=0; n<possibilities[i,j].Count; n++){
+						var c = possibilities[i,j].ToList()[n];
+						copy[i, j] = c;
+						var response = GetSolutionRecur(copy, nextX, nextY, possibilities, level+1);
 
 						if(response != null){
 							return response;
@@ -440,17 +446,6 @@ public class SudokuSolve
 			for(int j=0; j<9; j++){
 				returns[i,j] = new HashSet<char>();
 				returns[i,j].UnionWith(Enumerable.Range(1, 9).Select(x => Convert.ToChar(x+'0')).ToList());
-			}
-		}
-
-		return returns;
-	}
-
-	private HashSet<char>[,] CreateImpossibilitiesMap(){
-		var returns = new HashSet<char>[9,9];
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				returns[i,j] = new HashSet<char>();
 			}
 		}
 
