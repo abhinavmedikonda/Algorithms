@@ -7,28 +7,28 @@ namespace Algorithms;
 public class SudokuSolve
 {
 
-	static void Main(string[] args)
-	{
-		SudokuSolve sudokuSolve = new SudokuSolve();
+	// static void Main(string[] args)
+	// {
+	// 	SudokuSolve sudokuSolve = new SudokuSolve();
 
-		char[,] board = sudokuSolve.GetBoard();
+	// 	char[,] board = sudokuSolve.GetBoard();
 
-		// sudokuSolve.IsSudokuSolvable(board);
-		sudokuSolve.GetSolution(board);
+	// 	// sudokuSolve.IsSudokuSolvable(board);
+	// 	sudokuSolve.GetSolution(board);
 
-		for (int i = 0; i < 9; i++)
-		{
-			for (int j = 0; j < 9; j++)
-			{
-				Console.Write(board[i, j] + (j%3==2 ? " " : ""));
-			}
+	// 	for (int i = 0; i < 9; i++)
+	// 	{
+	// 		for (int j = 0; j < 9; j++)
+	// 		{
+	// 			Console.Write(board[i, j] + (j%3==2 ? " " : ""));
+	// 		}
 
-			Console.WriteLine();
-			if(i%3 == 2){
-				Console.WriteLine();
-			}
-		}
-	}
+	// 		Console.WriteLine();
+	// 		if(i%3 == 2){
+	// 			Console.WriteLine();
+	// 		}
+	// 	}
+	// }
 
 	List<HashSet<int>> rowSets = new List<HashSet<int>>();
 	List<HashSet<int>> columnSets = new List<HashSet<int>>();
