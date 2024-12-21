@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Algorithms;
 
@@ -30,155 +31,6 @@ public class SudokuSolve
 	// 	}
 	// }
 
-	List<HashSet<int>> rowSets = new List<HashSet<int>>();
-	List<HashSet<int>> columnSets = new List<HashSet<int>>();
-	List<HashSet<int>> boxSets = new List<HashSet<int>>();
-	bool isSolvable = true;
-
-	//sudo xcode-select --install
-	private bool IsSudokuSolvable(char[,] board)
-	{
-		int count = 0;
-		
-		for (int i = 0; i < 9; i++)
-		{
-			rowSets.Add(new HashSet<int>());
-			columnSets.Add(new HashSet<int>());
-			boxSets.Add(new HashSet<int>());
-		}
-
-		for (int i = 0; i < 9; i++)
-		{
-			for (int j = 0; j < 3; j++)
-			{
-				int row = ((i / 3) * 3) + j;
-				for (int k = 0; k < 3; k++)
-				{
-					int column = ((i % 3) * 3) + k;
-					if(board[row,column] != '.')
-					{
-						count++;
-						int num = (int)char.GetNumericValue(board[row, column]);
-						if (rowSets[row].Contains(num) || columnSets[column].Contains(num) || boxSets[i].Contains(num))
-						{
-							isSolvable = false;
-							break;
-						}
-						rowSets[row].Add(num);
-						columnSets[column].Add(num);
-						boxSets[i].Add(num);
-					}
-				}
-			}
-		}
-
-		while (isSolvable)
-		{
-			isSolvable = false;
-			IsSudokuSolvableRecur(board, ref count);
-		}
-
-		if (count == 81) return true;
-		else return false;
-	}
-
-	private void IsSudokuSolvableRecur(char[,] board, ref int count)
-	{
-		for (int i = 0; i < 9; i++)
-		{
-			for (int j = 0; j < 9; j++)
-			{
-				if (board[i, j] == '.')
-				{
-					int box = ((i / 3) * 3) + (j / 3);
-					foreach (var item in PossibleNumbers(i, j, box))
-					{
-						if (!CanRowContain(board, item, i, j, box) ||
-							!CanColumnContain(board, item, i, j, box) ||
-							!CanBoxContain(board, item, i, j, box))
-						{
-							board[i, j] = item.ToString()[0];
-							rowSets[i].Add(item);
-							columnSets[j].Add(item);
-							boxSets[box].Add(item);
-							count++;
-							isSolvable = true;
-							break;
-						}
-					}
-				}
-			}
-		}
-	}
-	private List<int> PossibleNumbers(int row, int column, int box)
-	{
-		IEnumerable<int> union = rowSets[row].Union(columnSets[column].Union(boxSets[box]));
-		IEnumerable<int> possibleNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-		return possibleNumbers.Where(x => !union.Contains(x)).ToList();
-	}
-	private bool CanRowContain(char[,] board, int num, int row, int column, int box)
-	{
-		int boxIndex = box - (box % 3);
-		int boxIndexEnd = boxIndex + 3;
-		for (; boxIndex < boxIndexEnd; boxIndex++)
-		{
-			if (CanBoxRowContain(board, num, row, column, boxIndex)) return true;
-		}
-
-		return false;
-	}
-	private bool CanBoxRowContain(char[,] board, int num, int row, int column, int box)
-	{
-		if (boxSets[box].Contains(num)) return false;
-		for (int i = 0; i < 3; i++)
-		{
-			int columnIndex = ((box % 3) * 3) + i;
-			if (column != columnIndex && board[row, columnIndex] == '.' && !columnSets[columnIndex].Contains(num)) return true;
-		}
-
-		return false;
-	}
-	private bool CanColumnContain(char[,] board, int num, int row, int column, int box)
-	{
-		int boxIndex = box % 3;
-		int boxIndexEnd = boxIndex + 6;
-
-		for (; boxIndex <= boxIndexEnd; boxIndex += 3)
-		{
-			if (CanBoxColumnContain(board, num, row, column, boxIndex)) return true;
-		}
-
-		return false;
-	}
-	private bool CanBoxColumnContain(char[,] board, int num, int row, int column, int box)
-	{
-		if (boxSets[box].Contains(num)) return false;
-		for (int i = 0; i < 3; i++)
-		{
-			int rowIndex = ((box / 3) * 3) + i;
-			if (row != rowIndex && board[rowIndex, column] == '.' && !rowSets[rowIndex].Contains(num)) return true;
-		}
-
-		return false;
-	}
-	private bool CanBoxContain(char[,] board, int num, int row, int column, int box)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			int rowIndex = ((box / 3) * 3) + i;
-			for (int j = 0; j < 3; j++)
-			{
-				int columnIndex = ((box % 3) * 3) + i;
-				if (row != rowIndex )
-				{
-
-				}
-			}
-		}
-
-		return false;
-	}
-
 	private char[,] GetBoard()
 	{
 		// return new char[,] {
@@ -192,18 +44,17 @@ public class SudokuSolve
 		// 	{ '2', '8', '7', '4', '1', '9', '6', '3', '5'},
 		// 	{ '3', '4', '5', '2', '8', '6', '1', '7', '9'}
 		// };
-
-		return new char[,] {
-			{ '5', '3', '.', '.', '7', '.', '.', '.', '.'},
-			{ '6', '.', '.', '1', '9', '5', '.', '.', '.'},
-			{ '.', '9', '8', '.', '.', '.', '.', '6', '.'},
-			{ '8', '.', '.', '.', '6', '.', '.', '.', '3'},
-			{ '4', '.', '.', '8', '.', '3', '.', '.', '1'},
-			{ '7', '.', '.', '.', '2', '.', '.', '.', '6'},
-			{ '.', '6', '.', '.', '.', '.', '2', '8', '.'},
-			{ '.', '.', '.', '4', '1', '9', '.', '.', '5'},
-			{ '.', '.', '.', '.', '8', '.', '.', '7', '9'}
-		};
+		// return new char[,] {
+		// 	{ '5', '3', '.', '.', '7', '.', '.', '.', '.'},
+		// 	{ '6', '.', '.', '1', '9', '5', '.', '.', '.'},
+		// 	{ '.', '9', '8', '.', '.', '.', '.', '6', '.'},
+		// 	{ '8', '.', '.', '.', '6', '.', '.', '.', '3'},
+		// 	{ '4', '.', '.', '8', '.', '3', '.', '.', '1'},
+		// 	{ '7', '.', '.', '.', '2', '.', '.', '.', '6'},
+		// 	{ '.', '6', '.', '.', '.', '.', '2', '8', '.'},
+		// 	{ '.', '.', '.', '4', '1', '9', '.', '.', '5'},
+		// 	{ '.', '.', '.', '.', '8', '.', '.', '7', '9'}
+		// };
 
 		// return new char[,] {
 		// 	{ '.', '5', '.', '.', '7', '.', '.', '8', '3'},
@@ -215,6 +66,42 @@ public class SudokuSolve
 		// 	{ '5', '.', '7', '.', '.', '.', '4', '.', '.'},
 		// 	{ '.', '.', '.', '3', '.', '2', '.', '.', '.'},
 		// 	{ '1', '.', '.', '.', '.', '.', '.', '.', '.'}
+		// };
+
+		// return new char[,] {
+		// 	{ '1', '.', '.', '.', '.', '.', '.', '.', '.'},
+		// 	{ '.', '.', '.', '6', '.', '.', '.', '.', '.'},
+		// 	{ '.', '6', '.', '9', '3', '5', '.', '.', '.'},
+		// 	{ '.', '.', '2', '3', '4', '.', '.', '6', '.'},
+		// 	{ '3', '.', '.', '.', '.', '1', '.', '.', '2'},
+		// 	{ '.', '.', '.', '.', '.', '.', '.', '8', '4'},
+		// 	{ '.', '5', '.', '.', '6', '.', '.', '.', '.'},
+		// 	{ '.', '.', '1', '.', '.', '2', '.', '9', '.'},
+		// 	{ '8', '.', '.', '.', '.', '.', '.', '7', '1'}
+		// };
+
+		return new char[,] {
+			{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+			{ '.', '.', '.', '.', '.', '1', '2', '6', '9'},
+			{ '2', '.', '.', '.', '5', '.', '.', '.', '1'},
+			{ '.', '.', '.', '.', '8', '6', '9', '.', '.'},
+			{ '.', '5', '.', '.', '4', '9', '.', '.', '.'},
+			{ '.', '.', '.', '.', '.', '.', '.', '7', '.'},
+			{ '.', '3', '8', '.', '7', '.', '6', '.', '.'},
+			{ '.', '.', '5', '.', '.', '.', '.', '9', '7'},
+			{ '.', '9', '.', '.', '.', '5', '.', '.', '4'}
+		};
+
+		// return new char[,] {
+		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
+		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'}
 		// };
 	}
 
@@ -229,21 +116,123 @@ public class SudokuSolve
 
 				possibilities[i,j].Clear();
 
-				updatePossibilities(board, i, j, c, possibilities);
+				updatePossibilitiesForCell(board, i, j, c, possibilities);
 			}
 		}
 
 		bool change = true;
 		while(change){
-			change = checkPossibilities(board, possibilities);
+			change = updateCells(board, possibilities) || updatePossibilities(possibilities);
 		}
 
-		GetSolutionRecur(board, 0, 0, possibilities, 0);
+		// GetSolutionRecur(board, 0, 0, possibilities, 0);
+		print(board, possibilities);
 
 		return board;
 	}
 
-	private bool checkPossibilities(char[,] board, HashSet<char>[,] possibilities){
+	private bool updatePossibilities(HashSet<char>[,] possibilities){
+		bool updates = false;
+		for(int i=0; i<9; i++){
+			for(int j=0; j<9; j++){
+				if(possibilities[i,j].Count == 0){
+					continue;
+				}
+
+				updates = updatePossibilitiesRow(possibilities, i, j)
+					|| updatePossibilitiesColumn(possibilities, i, j)
+					|| updatePossibilitiesBox(possibilities, i, j);
+			}
+		}
+
+		return updates;
+	}
+
+	private bool updatePossibilitiesRow(HashSet<char>[,] possibilities, int i, int j){
+		var counter = 0;
+		var list = Enumerable.Range(0, 9).ToList();
+		for(int k=0; k<9; k++){
+			if(k == j){
+				list.Remove(k);
+				continue;
+			}
+
+			if(possibilities[i,j].SetEquals(possibilities[i,k])){
+				counter++;
+				list.Remove(k);
+			}
+		}
+
+		if(possibilities[i,j].Count == counter+1){
+			for(int k=0; k<list.Count; k++){
+				possibilities[i,list[k]].RemoveWhere(x => possibilities[i,j].Contains(x));
+			}
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private bool updatePossibilitiesColumn(HashSet<char>[,] possibilities, int i, int j){
+		var counter = 0;
+		var list = Enumerable.Range(0, 9).ToList();
+		for(int k=0; k<9; k++){
+			if(k == i){
+				list.Remove(k);
+				continue;
+			}
+
+			if(possibilities[i,j].SetEquals(possibilities[k,j])){
+				counter++;
+				list.Remove(k);
+			}
+		}
+
+		if(possibilities[i,j].Count == counter+1){
+			for(int k=0; k<list.Count; k++){
+				possibilities[list[k], j].RemoveWhere(x => possibilities[i,j].Contains(x));
+			}
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private bool updatePossibilitiesBox(HashSet<char>[,] possibilities, int i, int j){
+		var counter = 0;
+		var list = Enumerable.Range(0, 9).ToList();
+		var boxX = (i/3)*3;
+		var boxY = (j/3)*3;
+		for(int k=0; k<9; k++){
+			var x = boxX+(k/3);
+			var y = boxY+(k/3);
+			if(x == i && y == j){
+				list.Remove(k);
+				continue;
+			}
+
+			if(possibilities[i,j].SetEquals(possibilities[x,y])){
+				counter++;
+				list.Remove(k);
+			}
+		}
+
+		if(possibilities[i,j].Count == counter+1){
+			for(int k=0; k<list.Count; k++){
+				var x = boxX+(list[k]/3);
+				var y = boxY+(list[k]/3);
+				possibilities[x, y].RemoveWhere(x => possibilities[i,j].Contains(x));
+			}
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private bool updateCells(char[,] board, HashSet<char>[,] possibilities){
 		bool updates = false;
 		for(int i=0; i<9; i++){
 			for(int j=0; j<9; j++){
@@ -256,95 +245,97 @@ public class SudokuSolve
 
 					for(int n=0; n<possibilities[i,j].Count; n++){
 						var c = possibilities[i,j].ToList()[n];
-						var possible = false;
-						for(int k=0; k<9; k++){
-							if(k == j){
-								continue;
-							}
-							if(possibilities[i, k].Contains(c)){
-								possible = true;
-								break;
-							}
+						
+						updates |= updateCellRow(board, possibilities, i, j, c);
+						if(updates){
+							continue;
 						}
 
-						if(!possible){
-							updateCell(board, i, j, c, possibilities);
-							updates = true;
-							break;
+						updates |= updateCellColumn(board, possibilities, i, j, c);
+						if(updates){
+							continue;
 						}
 
-						possible = false;
-						for(int k=0; k<9; k++){
-							if(k == i){
-								continue;
-							}
-							if(possibilities[k, j].Contains(c)){
-								possible = true;
-								break;
-							}
-						}
-
-						if(!possible){
-							updateCell(board, i, j, c, possibilities);
-							updates = true;
-							break;
-						}
-
-						possible = false;
-						var row = 3*(i/3);
-						var column = 3*(j/3);
-						for(int x=row; x<row+3; x++){
-							for(int y=column; y<column+3; y++){
-								if(x==i && y==j){
-									continue;
-								}
-								if(possibilities[x, y].Contains(c)){
-									possible = true;
-								}
-							}
-						}
-
-						if(!possible){
-							updateCell(board, i, j, c, possibilities);
-							updates = true;
-						}
+						updates |= checkPossibilitiesBox(board, possibilities, i, j, c);
 					}
 				}
 			}
 		}
 
-		var count = 0;
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				Console.Write(board[i,j]);
-				if(board[i,j] == '.'){
-					count++;
+		print(board, possibilities);
+		return updates;
+	}
+
+	private bool updateCellRow(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
+		var possible = false;
+		for(int k=0; k<9; k++){
+			if(k == j){
+				continue;
+			}
+			if(possibilities[i, k].Contains(c)){
+				possible = true;
+				break;
+			}
+		}
+
+		if(!possible){
+			updateCell(board, i, j, c, possibilities);
+			return true;
+		}
+
+		return false;
+	}
+
+	private bool updateCellColumn(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
+		var possible = false;
+		for(int k=0; k<9; k++){
+			if(k == i){
+				continue;
+			}
+			if(possibilities[k, j].Contains(c)){
+				possible = true;
+				break;
+			}
+		}
+
+		if(!possible){
+			updateCell(board, i, j, c, possibilities);
+			return true;
+		}
+
+		return false;
+	}
+
+	private bool checkPossibilitiesBox(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
+		var possible = false;
+		var row = 3*(i/3);
+		var column = 3*(j/3);
+		for(int x=row; x<row+3; x++){
+			for(int y=column; y<column+3; y++){
+				if(x==i && y==j){
+					continue;
+				}
+				if(possibilities[x, y].Contains(c)){
+					possible = true;
 				}
 			}
-
-			Console.WriteLine();
 		}
 
-		Console.WriteLine(count);
-
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				Console.Write(possibilities[i,j].Count);
-			}
-
-			Console.WriteLine();
+		if(!possible){
+			updateCell(board, i, j, c, possibilities);
+			return true;
 		}
 
-		return updates;
+		return false;
 	}
 
 	private void updateCell(char[,] board, int i, int j, char c, HashSet<char>[,] possibilities){
 		board[i,j] = c;
 		possibilities[i,j].Clear();
-		updatePossibilities(board, i, j, c, possibilities);
+		updatePossibilitiesForCell(board, i, j, c, possibilities);
 	}
 
-	private void updatePossibilities(char[,] board, int i, int j, char c, HashSet<char>[,] possibilities){
+	private void updatePossibilitiesForCell(char[,] board, int i, int j, char c, HashSet<char>[,] possibilities){
 		for(int k=0; k<9; k++){
 			if(possibilities[i, k].Contains(c)){
 				possibilities[i, k].Remove(c);
@@ -450,6 +441,40 @@ public class SudokuSolve
 		}
 
 		return returns;
+	}
+
+	private void print(char[,] board, HashSet<char>[,] possibilities){
+		var count = 0;
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+				Console.Write(board[i, j] + (j%3==2 ? " " : ""));
+				if(board[i,j] == '.'){
+					count++;
+				}
+			}
+
+			Console.WriteLine();
+			if(i<8 && i%3 == 2){
+				Console.WriteLine();
+			}
+		}
+
+		Console.WriteLine(count);
+
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+				Console.Write(possibilities[i, j].Count + (j%3==2 ? " " : ""));
+			}
+
+			Console.WriteLine();
+			if(i%3 == 2){
+				Console.WriteLine();
+			}
+		}
 	}
 
 }
