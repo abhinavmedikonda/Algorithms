@@ -81,27 +81,31 @@ public class SudokuSolve
 		// };
 
 		return new char[,] {
-			{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-			{ '.', '.', '.', '.', '.', '1', '2', '6', '9'},
-			{ '2', '.', '.', '.', '5', '.', '.', '.', '1'},
-			{ '.', '.', '.', '.', '8', '6', '9', '.', '.'},
-			{ '.', '5', '.', '.', '4', '9', '.', '.', '.'},
-			{ '.', '.', '.', '.', '.', '.', '.', '7', '.'},
-			{ '.', '3', '8', '.', '7', '.', '6', '.', '.'},
-			{ '.', '.', '5', '.', '.', '.', '.', '9', '7'},
-			{ '.', '9', '.', '.', '.', '5', '.', '.', '4'}
+			{ '.','.','6', '.','5','.', '.','4','.'},
+			{ '.','.','.', '.','1','.', '5','.','2'},
+			{ '.','4','.', '9','.','.', '1','8','.'},
+
+			{ '.','.','4', '5','.','.', '8','.','1'},
+			{ '.','5','.', '.','.','.', '7','6','.'},
+			{ '.','7','.', '.','.','.', '.','.','.'},
+
+			{ '9','.','.', '.','6','.', '.','2','.'},
+			{ '3','8','.', '7','.','.', '.','.','.'},
+			{ '.','.','.', '.','.','9', '.','.','.'}
 		};
 
 		// return new char[,] {
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'}
+		// 	{ '.','.','.', '.','.','.', '.','.','.'},
+		// 	{ '.','.','.', '.','.','.', '.','.','.'},
+		// 	{ '.','.','.', '.','.','.', '.','.','.'},
+
+		// 	{ '.','.','.', '.','.','.', '.','.','.'},
+		// 	{ '.','.','.', '.','.','.', '.','.','.'},
+		// 	{ '.','.','.', '.','.','.', '.','.','.'},
+
+		// 	{ '.','.','.', '.','.','.', '.','.','.'},
+		// 	{ '.','.','.', '.','.','.', '.','.','.'},
+		// 	{ '.','.','.', '.','.','.', '.','.','.'}
 		// };
 	}
 
@@ -359,34 +363,6 @@ public class SudokuSolve
 		}
 	}
 
-	private char[,] GetSolutionRecur(char[,] board, int x, int y, HashSet<char>[,] possibilities, int level){
-		var copy = board.Clone() as char[,];
-		for(int i=x; i<9; i++){
-			for(int j=y; j<9; j++){
-				if(level == 0){
-					Console.WriteLine($"{i} {j}");
-				}
-
-				y = 0;
-				if(copy[i, j] == '.'){
-					var nextX = j==8 ? i+1 : i;
-					var nextY = j==8 ? 0 : j+1;
-					for(int n=0; n<possibilities[i,j].Count; n++){
-						var c = possibilities[i,j].ToList()[n];
-						copy[i, j] = c;
-						var response = GetSolutionRecur(copy, nextX, nextY, possibilities, level+1);
-
-						if(response != null){
-							return response;
-						}
-					}
-				}
-			}
-		}
-
-		return isBoardRight(copy) ? copy : null;
-	}
-
 	private bool isBoardRight(char[,] board){
 		var columnSet = new HashSet<char>();
 		var boxSet = new HashSet<char>();
@@ -441,6 +417,34 @@ public class SudokuSolve
 		}
 
 		return returns;
+	}
+
+	private char[,] GetSolutionBrute(char[,] board, int x, int y, HashSet<char>[,] possibilities, int level){
+		var copy = board.Clone() as char[,];
+		for(int i=x; i<9; i++){
+			for(int j=y; j<9; j++){
+				if(level == 0){
+					Console.WriteLine($"{i} {j}");
+				}
+
+				y = 0;
+				if(copy[i, j] == '.'){
+					var nextX = j==8 ? i+1 : i;
+					var nextY = j==8 ? 0 : j+1;
+					for(int n=0; n<possibilities[i,j].Count; n++){
+						var c = possibilities[i,j].ToList()[n];
+						copy[i, j] = c;
+						var response = GetSolutionBrute(copy, nextX, nextY, possibilities, level+1);
+
+						if(response != null){
+							return response;
+						}
+					}
+				}
+			}
+		}
+
+		return isBoardRight(copy) ? copy : null;
 	}
 
 	private void print(char[,] board, HashSet<char>[,] possibilities){
