@@ -129,7 +129,7 @@ public class SudokuSolve
 			change = updateCells(board, possibilities) || updatePossibilities(possibilities);
 		}
 
-		// GetSolutionRecur(board, 0, 0, possibilities, 0);
+		// GetSolutionBrute(board, 0, 0, possibilities, 0);
 		print(board, possibilities);
 
 		return board;
