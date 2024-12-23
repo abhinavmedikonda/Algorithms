@@ -15,13 +15,13 @@ public class SudokuSolve
 	// 	char[,] board = sudokuSolve.GetBoard();
 
 	// 	// sudokuSolve.IsSudokuSolvable(board);
-	// 	sudokuSolve.GetSolution(board);
+	// 	var response = sudokuSolve.GetSolution(board);
 
 	// 	for (int i = 0; i < 9; i++)
 	// 	{
 	// 		for (int j = 0; j < 9; j++)
 	// 		{
-	// 			Console.Write(board[i, j] + (j%3==2 ? " " : ""));
+	// 			Console.Write(response[i, j] + (j%3==2 ? " " : ""));
 	// 		}
 
 	// 		Console.WriteLine();
@@ -34,78 +34,86 @@ public class SudokuSolve
 	private char[,] GetBoard()
 	{
 		// return new char[,] {
-		// 	{ '5', '3', '4', '6', '7', '8', '9', '1', '2'},
-		// 	{ '6', '7', '2', '1', '9', '5', '3', '4', '8'},
-		// 	{ '1', '9', '8', '3', '4', '2', '5', '6', '7'},
-		// 	{ '8', '5', '9', '7', '6', '1', '4', '2', '3'},
-		// 	{ '4', '2', '6', '8', '5', '3', '7', '9', '1'},
-		// 	{ '7', '1', '3', '9', '2', '4', '8', '5', '6'},
-		// 	{ '9', '6', '1', '5', '3', '7', '2', '8', '4'},
-		// 	{ '2', '8', '7', '4', '1', '9', '6', '3', '5'},
-		// 	{ '3', '4', '5', '2', '8', '6', '1', '7', '9'}
+		// 	{ '5','3','4', '6','7','8', '9','1','2' },
+		// 	{ '6','7','2', '1','9','5', '3','4','8' },
+		// 	{ '1','9','8', '3','4','2', '5','6','7' },
+
+		// 	{ '8','5','9', '7','6','1', '4','2','3' },
+		// 	{ '4','2','6', '8','5','3', '7','9','1' },
+		// 	{ '7','1','3', '9','2','4', '8','5','6' },
+
+		// 	{ '9','6','1', '5','3','7', '2','8','4' },
+		// 	{ '2','8','7', '4','1','9', '6','3','5' },
+		// 	{ '3','4','5', '2','8','6', '1','7','9' }
 		// };
 		// return new char[,] {
-		// 	{ '5', '3', '.', '.', '7', '.', '.', '.', '.'},
-		// 	{ '6', '.', '.', '1', '9', '5', '.', '.', '.'},
-		// 	{ '.', '9', '8', '.', '.', '.', '.', '6', '.'},
-		// 	{ '8', '.', '.', '.', '6', '.', '.', '.', '3'},
-		// 	{ '4', '.', '.', '8', '.', '3', '.', '.', '1'},
-		// 	{ '7', '.', '.', '.', '2', '.', '.', '.', '6'},
-		// 	{ '.', '6', '.', '.', '.', '.', '2', '8', '.'},
-		// 	{ '.', '.', '.', '4', '1', '9', '.', '.', '5'},
-		// 	{ '.', '.', '.', '.', '8', '.', '.', '7', '9'}
+		// 	{ '5','3','.', '.','7','.', '.','.','.' },
+		// 	{ '6','.','.', '1','9','5', '.','.','.' },
+		// 	{ '.','9','8', '.','.','.', '.','6','.' },
+
+		// 	{ '8','.','.', '.','6','.', '.','.','3' },
+		// 	{ '4','.','.', '8','.','3', '.','.','1' },
+		// 	{ '7','.','.', '.','2','.', '.','.','6' },
+
+		// 	{ '.','6','.', '.','.','.', '2','8','.' },
+		// 	{ '.','.','.', '4','1','9', '.','.','5' },
+		// 	{ '.','.','.', '.','8','.', '.','7','9' }
 		// };
 
 		// return new char[,] {
-		// 	{ '.', '5', '.', '.', '7', '.', '.', '8', '3'},
-		// 	{ '.', '.', '4', '.', '.', '.', '.', '6', '.'},
-		// 	{ '.', '.', '.', '.', '5', '.', '.', '.', '.'},
-		// 	{ '8', '3', '.', '6', '.', '.', '.', '.', '.'},
-		// 	{ '.', '.', '.', '9', '.', '.', '1', '.', '.'},
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '.', '.'},
-		// 	{ '5', '.', '7', '.', '.', '.', '4', '.', '.'},
-		// 	{ '.', '.', '.', '3', '.', '2', '.', '.', '.'},
-		// 	{ '1', '.', '.', '.', '.', '.', '.', '.', '.'}
-		// };
+		// 	{ '.','5','.', '.','7','.', '.','8','3' },
+		// 	{ '.','.','4', '.','.','.', '.','6','.' },
+		// 	{ '.','.','.', '.','5','.', '.','.','.' },
 
-		// return new char[,] {
-		// 	{ '1', '.', '.', '.', '.', '.', '.', '.', '.'},
-		// 	{ '.', '.', '.', '6', '.', '.', '.', '.', '.'},
-		// 	{ '.', '6', '.', '9', '3', '5', '.', '.', '.'},
-		// 	{ '.', '.', '2', '3', '4', '.', '.', '6', '.'},
-		// 	{ '3', '.', '.', '.', '.', '1', '.', '.', '2'},
-		// 	{ '.', '.', '.', '.', '.', '.', '.', '8', '4'},
-		// 	{ '.', '5', '.', '.', '6', '.', '.', '.', '.'},
-		// 	{ '.', '.', '1', '.', '.', '2', '.', '9', '.'},
-		// 	{ '8', '.', '.', '.', '.', '.', '.', '7', '1'}
+		// 	{ '8','3','.', '6','.','.', '.','.','.' },
+		// 	{ '.','.','.', '9','.','.', '1','.','.' },
+		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+
+		// 	{ '5','.','7', '.','.','.', '4','.','.' },
+		// 	{ '.','.','.', '3','.','2', '.','.','.' },
+		// 	{ '1','.','.', '.','.','.', '.','.','.' }
 		// };
 
 		return new char[,] {
-			{ '.','.','6', '.','5','.', '.','4','.'},
-			{ '.','.','.', '.','1','.', '5','.','2'},
-			{ '.','4','.', '9','.','.', '1','8','.'},
+			{ '1','.','.', '.','.','.', '.','.','.' },
+			{ '.','.','.', '6','.','.', '.','.','.' },
+			{ '.','6','.', '9','3','5', '.','.','.' },
 
-			{ '.','.','4', '5','.','.', '8','.','1'},
-			{ '.','5','.', '.','.','.', '7','6','.'},
-			{ '.','7','.', '.','.','.', '.','.','.'},
+			{ '.','.','2', '3','4','.', '.','6','.' },
+			{ '3','.','.', '.','.','1', '.','.','2' },
+			{ '.','.','.', '.','.','.', '.','8','4' },
 
-			{ '9','.','.', '.','6','.', '.','2','.'},
-			{ '3','8','.', '7','.','.', '.','.','.'},
-			{ '.','.','.', '.','.','9', '.','.','.'}
+			{ '.','5','.', '.','6','.', '.','.','.' },
+			{ '.','.','1', '.','.','2', '.','9','.' },
+			{ '8','.','.', '.','.','.', '.','7','1' }
 		};
 
 		// return new char[,] {
-		// 	{ '.','.','.', '.','.','.', '.','.','.'},
-		// 	{ '.','.','.', '.','.','.', '.','.','.'},
-		// 	{ '.','.','.', '.','.','.', '.','.','.'},
+		// 	{ '.','.','6', '.','5','.', '.','4','.' },
+		// 	{ '.','.','.', '.','1','.', '5','.','2' },
+		// 	{ '.','4','.', '9','.','.', '1','8','.' },
 
-		// 	{ '.','.','.', '.','.','.', '.','.','.'},
-		// 	{ '.','.','.', '.','.','.', '.','.','.'},
-		// 	{ '.','.','.', '.','.','.', '.','.','.'},
+		// 	{ '.','.','4', '5','.','.', '8','.','1' },
+		// 	{ '.','5','.', '.','.','.', '7','6','.' },
+		// 	{ '.','7','.', '.','.','.', '.','.','.' },
 
-		// 	{ '.','.','.', '.','.','.', '.','.','.'},
-		// 	{ '.','.','.', '.','.','.', '.','.','.'},
-		// 	{ '.','.','.', '.','.','.', '.','.','.'}
+		// 	{ '9','.','.', '.','6','.', '.','2','.' },
+		// 	{ '3','8','.', '7','.','.', '.','.','.' },
+		// 	{ '.','.','.', '.','.','9', '.','.','.' }
+		// };
+
+		// return new char[,] {
+		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+
+		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+
+		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+		// 	{ '.','.','.', '.','.','.', '.','.','.' }
 		// };
 	}
 
@@ -129,10 +137,10 @@ public class SudokuSolve
 			change = updateCells(board, possibilities) || updatePossibilities(possibilities);
 		}
 
-		// GetSolutionBrute(board, 0, 0, possibilities, 0);
-		print(board, possibilities);
+		var response = GetBruteSolution(board, 0, 0, possibilities, 0);
+		printBoard(response);
 
-		return board;
+		return response;
 	}
 
 	private bool updatePossibilities(HashSet<char>[,] possibilities){
@@ -363,7 +371,68 @@ public class SudokuSolve
 		}
 	}
 
+	private HashSet<char>[,] CreatePossibilitiesMap(){
+		var returns = new HashSet<char>[9,9];
+		for(int i=0; i<9; i++){
+			for(int j=0; j<9; j++){
+				returns[i,j] = new HashSet<char>();
+				returns[i,j].UnionWith(Enumerable.Range(1, 9).Select(x => Convert.ToChar(x+'0')).ToList());
+			}
+		}
+
+		return returns;
+	}
+
+	private char[,] GetBruteSolution(char[,] board, int x, int y, HashSet<char>[,] possibilities, int level){
+		if(x == 9){
+			return board;
+		}
+
+		var bCopy = board.Clone() as char[,];
+		var nextX = y==8 ? x+1 : x;
+		var nextY = y==8 ? 0 : y+1;
+		if(bCopy[x,y] != '.'){
+			var response = GetBruteSolution(bCopy, nextX, nextY, possibilities, level+1);
+			if(response != null){
+				return response;
+			}
+		}
+
+		if(possibilities[x,y].Count == 0){
+			return null;
+		}
+
+		for(int n=0; n<possibilities[x,y].Count; n++){
+			var c = possibilities[x,y].ToList()[n];
+			var pCopy = getPossibilitiesCopy(possibilities);
+
+			printBoard(bCopy);
+			updateCell(bCopy, x, y, c, pCopy);
+			printBoard(bCopy);
+
+			var response = GetBruteSolution(bCopy, nextX, nextY, pCopy, level+1);
+			if(response != null){
+				return response;
+			}
+		}
+
+		return x==8 && y==8 ? bCopy : null;
+	}
+
+	private HashSet<char>[,] getPossibilitiesCopy(HashSet<char>[,] possibilities){
+		var returns = new HashSet<char>[9,9];
+		for(int i=0; i<possibilities.GetLength(0); i++){
+			for(int j=0; j<possibilities.GetLength(1); j++){
+				returns[i,j] = new HashSet<char>(possibilities[i,j]);
+			}
+		}
+
+		return returns;
+	}
+
 	private bool isBoardRight(char[,] board){
+		printBoard(board);
+
 		var columnSet = new HashSet<char>();
 		var boxSet = new HashSet<char>();
 
@@ -407,47 +476,12 @@ public class SudokuSolve
 		return true;
 	}
 
-	private HashSet<char>[,] CreatePossibilitiesMap(){
-		var returns = new HashSet<char>[9,9];
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				returns[i,j] = new HashSet<char>();
-				returns[i,j].UnionWith(Enumerable.Range(1, 9).Select(x => Convert.ToChar(x+'0')).ToList());
-			}
-		}
-
-		return returns;
-	}
-
-	private char[,] GetSolutionBrute(char[,] board, int x, int y, HashSet<char>[,] possibilities, int level){
-		var copy = board.Clone() as char[,];
-		for(int i=x; i<9; i++){
-			for(int j=y; j<9; j++){
-				if(level == 0){
-					Console.WriteLine($"{i} {j}");
-				}
-
-				y = 0;
-				if(copy[i, j] == '.'){
-					var nextX = j==8 ? i+1 : i;
-					var nextY = j==8 ? 0 : j+1;
-					for(int n=0; n<possibilities[i,j].Count; n++){
-						var c = possibilities[i,j].ToList()[n];
-						copy[i, j] = c;
-						var response = GetSolutionBrute(copy, nextX, nextY, possibilities, level+1);
-
-						if(response != null){
-							return response;
-						}
-					}
-				}
-			}
-		}
-
-		return isBoardRight(copy) ? copy : null;
-	}
-
 	private void print(char[,] board, HashSet<char>[,] possibilities){
+		printBoard(board);
+		printPossibilities(possibilities);
+	}
+
+	private void printBoard(char[,] board){
 		var count = 0;
 		for (int i = 0; i < 9; i++)
 		{
@@ -466,7 +500,9 @@ public class SudokuSolve
 		}
 
 		Console.WriteLine(count);
+	}
 
+	private void printPossibilities(HashSet<char>[,] possibilities){
 		for (int i = 0; i < 9; i++)
 		{
 			for (int j = 0; j < 9; j++)
