@@ -7,27 +7,27 @@ namespace Algorithms;
 
 public class SudokuSolve
 {
+	static int bruteCount = 0;
 
 	// static void Main(string[] args)
 	// {
 	// 	SudokuSolve sudokuSolve = new SudokuSolve();
-
 	// 	char[,] board = sudokuSolve.GetBoard();
+	// 	if(!sudokuSolve.isValidSudoku(board)){
+	// 		Console.WriteLine("Invalid Sudoku:");
+	// 		sudokuSolve.printBoard(board);
+	// 		return;
+	// 	}
 
-	// 	// sudokuSolve.IsSudokuSolvable(board);
 	// 	var response = sudokuSolve.GetSolution(board);
 
-	// 	for (int i = 0; i < 9; i++)
-	// 	{
-	// 		for (int j = 0; j < 9; j++)
-	// 		{
-	// 			Console.Write(response[i, j] + (j%3==2 ? " " : ""));
-	// 		}
-
-	// 		Console.WriteLine();
-	// 		if(i%3 == 2){
-	// 			Console.WriteLine();
-	// 		}
+	// 	if(sudokuSolve.isSudokuSolution(response)){
+	// 		Console.WriteLine("Solution:");
+	// 		sudokuSolve.printBoard(response);
+	// 	}
+	// 	else{
+	// 		Console.WriteLine("Bad Sudoku:");
+	// 		sudokuSolve.printBoard(board);
 	// 	}
 	// }
 
@@ -46,6 +46,7 @@ public class SudokuSolve
 		// 	{ '2','8','7', '4','1','9', '6','3','5' },
 		// 	{ '3','4','5', '2','8','6', '1','7','9' }
 		// };
+		// // easy
 		// return new char[,] {
 		// 	{ '5','3','.', '.','7','.', '.','.','.' },
 		// 	{ '6','.','.', '1','9','5', '.','.','.' },
@@ -60,6 +61,7 @@ public class SudokuSolve
 		// 	{ '.','.','.', '.','8','.', '.','7','9' }
 		// };
 
+		// // hard
 		// return new char[,] {
 		// 	{ '.','5','.', '.','7','.', '.','8','3' },
 		// 	{ '.','.','4', '.','.','.', '.','6','.' },
@@ -74,20 +76,22 @@ public class SudokuSolve
 		// 	{ '1','.','.', '.','.','.', '.','.','.' }
 		// };
 
-		return new char[,] {
-			{ '1','.','.', '.','.','.', '.','.','.' },
-			{ '.','.','.', '6','.','.', '.','.','.' },
-			{ '.','6','.', '9','3','5', '.','.','.' },
+		// // medium
+		// return new char[,] {
+		// 	{ '1','.','.', '.','.','.', '.','.','.' },
+		// 	{ '.','.','.', '6','.','.', '.','.','.' },
+		// 	{ '.','6','.', '9','3','5', '.','.','.' },
 
-			{ '.','.','2', '3','4','.', '.','6','.' },
-			{ '3','.','.', '.','.','1', '.','.','2' },
-			{ '.','.','.', '.','.','.', '.','8','4' },
+		// 	{ '.','.','2', '3','4','.', '.','6','.' },
+		// 	{ '3','.','.', '.','.','1', '.','.','2' },
+		// 	{ '.','.','.', '.','.','.', '.','8','4' },
 
-			{ '.','5','.', '.','6','.', '.','.','.' },
-			{ '.','.','1', '.','.','2', '.','9','.' },
-			{ '8','.','.', '.','.','.', '.','7','1' }
-		};
+		// 	{ '.','5','.', '.','6','.', '.','.','.' },
+		// 	{ '.','.','1', '.','.','2', '.','9','.' },
+		// 	{ '8','.','.', '.','.','.', '.','7','1' }
+		// };
 
+		// // easy
 		// return new char[,] {
 		// 	{ '.','.','6', '.','5','.', '.','4','.' },
 		// 	{ '.','.','.', '.','1','.', '5','.','2' },
@@ -102,19 +106,19 @@ public class SudokuSolve
 		// 	{ '.','.','.', '.','.','9', '.','.','.' }
 		// };
 
-		// return new char[,] {
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+		return new char[,] {
+			{ '.','.','.', '.','.','.', '.','.','.' },
+			{ '.','.','.', '.','.','.', '.','.','.' },
+			{ '.','.','.', '.','.','.', '.','.','.' },
 
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+			{ '.','.','.', '.','.','.', '.','.','.' },
+			{ '.','.','.', '.','.','.', '.','.','.' },
+			{ '.','.','.', '.','.','.', '.','.','.' },
 
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' }
-		// };
+			{ '.','.','.', '.','.','.', '.','.','.' },
+			{ '.','.','.', '.','.','.', '.','.','.' },
+			{ '.','.','.', '.','.','.', '.','.','.' }
+		};
 	}
 
 	private char[,] GetSolution(char[,] board){
@@ -137,10 +141,7 @@ public class SudokuSolve
 			change = updateCells(board, possibilities) || updatePossibilities(possibilities);
 		}
 
-		var response = GetBruteSolution(board, 0, 0, possibilities, 0);
-		printBoard(response);
-
-		return response;
+		return GetBruteSolution(board, 0, 0, possibilities, 0);
 	}
 
 	private bool updatePossibilities(HashSet<char>[,] possibilities){
@@ -175,7 +176,7 @@ public class SudokuSolve
 			}
 		}
 
-		if(possibilities[i,j].Count == counter+1){
+		if(counter != 8 && possibilities[i,j].Count == counter+1){
 			for(int k=0; k<list.Count; k++){
 				possibilities[i,list[k]].RemoveWhere(x => possibilities[i,j].Contains(x));
 			}
@@ -201,7 +202,7 @@ public class SudokuSolve
 			}
 		}
 
-		if(possibilities[i,j].Count == counter+1){
+		if(counter != 8 && possibilities[i,j].Count == counter+1){
 			for(int k=0; k<list.Count; k++){
 				possibilities[list[k], j].RemoveWhere(x => possibilities[i,j].Contains(x));
 			}
@@ -231,7 +232,7 @@ public class SudokuSolve
 			}
 		}
 
-		if(possibilities[i,j].Count == counter+1){
+		if(counter != 8 && possibilities[i,j].Count == counter+1){
 			for(int k=0; k<list.Count; k++){
 				var x = boxX+(list[k]/3);
 				var y = boxY+(list[k]/3);
@@ -268,7 +269,7 @@ public class SudokuSolve
 							continue;
 						}
 
-						updates |= checkPossibilitiesBox(board, possibilities, i, j, c);
+						updates |= updateCellBox(board, possibilities, i, j, c);
 					}
 				}
 			}
@@ -318,7 +319,7 @@ public class SudokuSolve
 		return false;
 	}
 
-	private bool checkPossibilitiesBox(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
+	private bool updateCellBox(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
 		var possible = false;
 		var row = 3*(i/3);
 		var column = 3*(j/3);
@@ -384,6 +385,12 @@ public class SudokuSolve
 	}
 
 	private char[,] GetBruteSolution(char[,] board, int x, int y, HashSet<char>[,] possibilities, int level){
+		bruteCount++;
+		if(bruteCount%10000 == 0){
+			Console.WriteLine(bruteCount);
+			printBoard(board);
+		}
+
 		if(x == 9){
 			return board;
 		}
@@ -406,9 +413,7 @@ public class SudokuSolve
 			var c = possibilities[x,y].ToList()[n];
 			var pCopy = getPossibilitiesCopy(possibilities);
 
-			printBoard(bCopy);
 			updateCell(bCopy, x, y, c, pCopy);
-			printBoard(bCopy);
 
 			var response = GetBruteSolution(bCopy, nextX, nextY, pCopy, level+1);
 			if(response != null){
@@ -430,12 +435,7 @@ public class SudokuSolve
 		return returns;
 	}
 
-	private bool isBoardRight(char[,] board){
-		printBoard(board);
-
-		var columnSet = new HashSet<char>();
-		var boxSet = new HashSet<char>();
-
+	private bool isSudokuSolution(char[,] board){
 		for(int i=0; i<9; i++){
 			var hash = new HashSet<char>();
 			for(int j=0; j<9; j++){
@@ -468,6 +468,61 @@ public class SudokuSolve
 						}
 
 						hash.Add(board[i,j]);
+					}
+				}
+			}
+		}
+
+		return true;
+	}
+
+	private bool isValidSudoku(char[,] board){
+		for(int i=0; i<9; i++){
+			for(int j=0; j<9; j++){
+				if(board[i,j]=='0' || !char.IsAsciiDigit(board[i,j]) && board[i,j]!='.'){
+					return false;
+				}
+			}
+		}
+
+		for(int i=0; i<9; i++){
+			var hash = new HashSet<char>();
+			for(int j=0; j<9; j++){
+				if(hash.Contains(board[i,j])){
+					return false;
+				}
+
+				if(board[i,j] != '.'){
+					hash.Add(board[i,j]);
+				}
+			}
+		}
+
+		for(int i=0; i<9; i++){
+			var hash = new HashSet<char>();
+			for(int j=0; j<9; j++){
+				if(hash.Contains(board[j,i])){
+					return false;
+				}
+
+				if(board[i,j] != '.'){
+					hash.Add(board[i,j]);
+				}
+			}
+		}
+
+		for(int x=0; x<3; x++){
+			for(int y=0; y<3; y++){
+				var hash = new HashSet<char>();
+				for(int i=x*3; i<x*3+3; i++){
+					for(int j=y*3; j<y*3+3; j++){
+						if(hash.Contains(board[i,j])){
+							return false;
+						}
+
+						if(board[i,j] != '.'){
+							hash.Add(board[i,j]);
+						}
 					}
 				}
 			}
