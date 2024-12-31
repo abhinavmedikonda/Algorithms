@@ -5,124 +5,11 @@ using System.Threading;
 
 namespace Algorithms;
 
-public class SudokuSolve
+public class SudokuSolver
 {
 	static int bruteCount = 0;
 
-	// static void Main(string[] args)
-	// {
-	// 	SudokuSolve sudokuSolve = new SudokuSolve();
-	// 	char[,] board = sudokuSolve.GetBoard();
-	// 	if(!sudokuSolve.isValidSudoku(board)){
-	// 		Console.WriteLine("Invalid Sudoku:");
-	// 		sudokuSolve.printBoard(board);
-	// 		return;
-	// 	}
-
-	// 	var response = sudokuSolve.GetSolution(board);
-
-	// 	if(sudokuSolve.isSudokuSolution(response)){
-	// 		Console.WriteLine("Solution:");
-	// 		sudokuSolve.printBoard(response);
-	// 		Console.WriteLine(bruteCount);
-	// 	}
-	// 	else{
-	// 		Console.WriteLine("Bad Sudoku:");
-	// 		sudokuSolve.printBoard(board);
-	// 	}
-	// }
-
-	private char[,] GetBoard()
-	{
-		// return new char[,] {
-		// 	{ '5','3','4', '6','7','8', '9','1','2' },
-		// 	{ '6','7','2', '1','9','5', '3','4','8' },
-		// 	{ '1','9','8', '3','4','2', '5','6','7' },
-
-		// 	{ '8','5','9', '7','6','1', '4','2','3' },
-		// 	{ '4','2','6', '8','5','3', '7','9','1' },
-		// 	{ '7','1','3', '9','2','4', '8','5','6' },
-
-		// 	{ '9','6','1', '5','3','7', '2','8','4' },
-		// 	{ '2','8','7', '4','1','9', '6','3','5' },
-		// 	{ '3','4','5', '2','8','6', '1','7','9' }
-		// };
-		// // easy
-		// return new char[,] {
-		// 	{ '5','3','.', '.','7','.', '.','.','.' },
-		// 	{ '6','.','.', '1','9','5', '.','.','.' },
-		// 	{ '.','9','8', '.','.','.', '.','6','.' },
-
-		// 	{ '8','.','.', '.','6','.', '.','.','3' },
-		// 	{ '4','.','.', '8','.','3', '.','.','1' },
-		// 	{ '7','.','.', '.','2','.', '.','.','6' },
-
-		// 	{ '.','6','.', '.','.','.', '2','8','.' },
-		// 	{ '.','.','.', '4','1','9', '.','.','5' },
-		// 	{ '.','.','.', '.','8','.', '.','7','9' }
-		// };
-
-		// // hard
-		// return new char[,] {
-		// 	{ '.','5','.', '.','7','.', '.','8','3' },
-		// 	{ '.','.','4', '.','.','.', '.','6','.' },
-		// 	{ '.','.','.', '.','5','.', '.','.','.' },
-
-		// 	{ '8','3','.', '6','.','.', '.','.','.' },
-		// 	{ '.','.','.', '9','.','.', '1','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-
-		// 	{ '5','.','7', '.','.','.', '4','.','.' },
-		// 	{ '.','.','.', '3','.','2', '.','.','.' },
-		// 	{ '1','.','.', '.','.','.', '.','.','.' }
-		// };
-
-		// medium
-		return new char[,] {
-			{ '1','.','.', '.','.','.', '.','.','.' },
-			{ '.','.','.', '6','.','.', '.','.','.' },
-			{ '.','6','.', '9','3','5', '.','.','.' },
-
-			{ '.','.','2', '3','4','.', '.','6','.' },
-			{ '3','.','.', '.','.','1', '.','.','2' },
-			{ '.','.','.', '.','.','.', '.','8','4' },
-
-			{ '.','5','.', '.','6','.', '.','.','.' },
-			{ '.','.','1', '.','.','2', '.','9','.' },
-			{ '8','.','.', '.','.','.', '.','7','1' }
-		};
-
-		// // easy
-		// return new char[,] {
-		// 	{ '.','.','6', '.','5','.', '.','4','.' },
-		// 	{ '.','.','.', '.','1','.', '5','.','2' },
-		// 	{ '.','4','.', '9','.','.', '1','8','.' },
-
-		// 	{ '.','.','4', '5','.','.', '8','.','1' },
-		// 	{ '.','5','.', '.','.','.', '7','6','.' },
-		// 	{ '.','7','.', '.','.','.', '.','.','.' },
-
-		// 	{ '9','.','.', '.','6','.', '.','2','.' },
-		// 	{ '3','8','.', '7','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','9', '.','.','.' }
-		// };
-
-		// return new char[,] {
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' }
-		// };
-	}
-
-	private char[,] GetSolution(char[,] board){
+	private static char[,] GetSolution(char[,] board){
 		var possibilities = CreatePossibilitiesMap();
 		for(int i=0; i<9; i++){
 			for(int j=0; j<9; j++){
@@ -145,7 +32,7 @@ public class SudokuSolve
 		return GetBruteSolution(board, 0, 0, possibilities, 0);
 	}
 
-	private bool updatePossibilities(HashSet<char>[,] possibilities){
+	private static bool updatePossibilities(HashSet<char>[,] possibilities){
 		bool updates = false;
 		for(int i=0; i<9; i++){
 			for(int j=0; j<9; j++){
@@ -162,7 +49,7 @@ public class SudokuSolve
 		return updates;
 	}
 
-	private bool updatePossibilitiesRow(HashSet<char>[,] possibilities, int i, int j){
+	private static bool updatePossibilitiesRow(HashSet<char>[,] possibilities, int i, int j){
 		var counter = 0;
 		var list = Enumerable.Range(0, 9).ToList();
 		for(int k=0; k<9; k++){
@@ -188,7 +75,7 @@ public class SudokuSolve
 		return false;
 	}
 
-	private bool updatePossibilitiesColumn(HashSet<char>[,] possibilities, int i, int j){
+	private static bool updatePossibilitiesColumn(HashSet<char>[,] possibilities, int i, int j){
 		var counter = 0;
 		var list = Enumerable.Range(0, 9).ToList();
 		for(int k=0; k<9; k++){
@@ -214,7 +101,7 @@ public class SudokuSolve
 		return false;
 	}
 
-	private bool updatePossibilitiesBox(HashSet<char>[,] possibilities, int i, int j){
+	private static bool updatePossibilitiesBox(HashSet<char>[,] possibilities, int i, int j){
 		var counter = 0;
 		var list = Enumerable.Range(0, 9).ToList();
 		var boxX = (i/3)*3;
@@ -246,7 +133,7 @@ public class SudokuSolve
 		return false;
 	}
 
-	private bool updateCells(char[,] board, HashSet<char>[,] possibilities){
+	private static bool updateCells(char[,] board, HashSet<char>[,] possibilities){
 		bool updates = false;
 		for(int i=0; i<9; i++){
 			for(int j=0; j<9; j++){
@@ -276,11 +163,11 @@ public class SudokuSolve
 			}
 		}
 
-		print(board, possibilities);
+		// print(board, possibilities);
 		return updates;
 	}
 
-	private bool updateCellRow(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
+	private static bool updateCellRow(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
 		var possible = false;
 		for(int k=0; k<9; k++){
 			if(k == j){
@@ -300,7 +187,7 @@ public class SudokuSolve
 		return false;
 	}
 
-	private bool updateCellColumn(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
+	private static bool updateCellColumn(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
 		var possible = false;
 		for(int k=0; k<9; k++){
 			if(k == i){
@@ -320,7 +207,7 @@ public class SudokuSolve
 		return false;
 	}
 
-	private bool updateCellBox(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
+	private static bool updateCellBox(char[,] board, HashSet<char>[,] possibilities, int i, int j, char c){
 		var possible = false;
 		var row = 3*(i/3);
 		var column = 3*(j/3);
@@ -343,13 +230,13 @@ public class SudokuSolve
 		return false;
 	}
 
-	private void updateCell(char[,] board, int i, int j, char c, HashSet<char>[,] possibilities){
+	private static void updateCell(char[,] board, int i, int j, char c, HashSet<char>[,] possibilities){
 		board[i,j] = c;
 		possibilities[i,j].Clear();
 		updatePossibilitiesForCell(board, i, j, c, possibilities);
 	}
 
-	private void updatePossibilitiesForCell(char[,] board, int i, int j, char c, HashSet<char>[,] possibilities){
+	private static void updatePossibilitiesForCell(char[,] board, int i, int j, char c, HashSet<char>[,] possibilities){
 		for(int k=0; k<9; k++){
 			if(possibilities[i, k].Contains(c)){
 				possibilities[i, k].Remove(c);
@@ -373,7 +260,7 @@ public class SudokuSolve
 		}
 	}
 
-	private HashSet<char>[,] CreatePossibilitiesMap(){
+	private static HashSet<char>[,] CreatePossibilitiesMap(){
 		var returns = new HashSet<char>[9,9];
 		for(int i=0; i<9; i++){
 			for(int j=0; j<9; j++){
@@ -385,12 +272,12 @@ public class SudokuSolve
 		return returns;
 	}
 
-	private char[,] GetBruteSolution(char[,] board, int x, int y, HashSet<char>[,] possibilities, int level){
-		bruteCount++;
-		if(bruteCount%10000 == 0){
-			Console.WriteLine(bruteCount);
-			printBoard(board);
-		}
+	private static char[,] GetBruteSolution(char[,] board, int x, int y, HashSet<char>[,] possibilities, int level){
+		// bruteCount++;
+		// if(bruteCount%10000 == 0){
+		// 	Console.WriteLine(bruteCount);
+		// 	printBoard(board);
+		// }
 
 		if(x == 9){
 			return board;
@@ -425,7 +312,7 @@ public class SudokuSolve
 		return x==8 && y==8 ? bCopy : null;
 	}
 
-	private HashSet<char>[,] getPossibilitiesCopy(HashSet<char>[,] possibilities){
+	private static HashSet<char>[,] getPossibilitiesCopy(HashSet<char>[,] possibilities){
 		var returns = new HashSet<char>[9,9];
 		for(int i=0; i<possibilities.GetLength(0); i++){
 			for(int j=0; j<possibilities.GetLength(1); j++){
@@ -436,7 +323,7 @@ public class SudokuSolve
 		return returns;
 	}
 
-	private bool isSudokuSolution(char[,] board){
+	private static bool isSudokuSolution(char[,] board){
 		for(int i=0; i<9; i++){
 			var hash = new HashSet<char>();
 			for(int j=0; j<9; j++){
@@ -477,7 +364,7 @@ public class SudokuSolve
 		return true;
 	}
 
-	private bool isValidSudoku(char[,] board){
+	private static bool isValidSudoku(char[,] board){
 		for(int i=0; i<9; i++){
 			for(int j=0; j<9; j++){
 				if(board[i,j]=='0' || !char.IsAsciiDigit(board[i,j]) && board[i,j]!='.'){
@@ -532,12 +419,12 @@ public class SudokuSolve
 		return true;
 	}
 
-	private void print(char[,] board, HashSet<char>[,] possibilities){
+	private static void print(char[,] board, HashSet<char>[,] possibilities){
 		printBoard(board);
 		printPossibilities(possibilities);
 	}
 
-	private void printBoard(char[,] board){
+	private static void printBoard(char[,] board){
 		var count = 0;
 		for (int i = 0; i < 9; i++)
 		{
@@ -558,7 +445,7 @@ public class SudokuSolve
 		Console.WriteLine($"'.': {count}");
 	}
 
-	private void printPossibilities(HashSet<char>[,] possibilities){
+	private static void printPossibilities(HashSet<char>[,] possibilities){
 		for (int i = 0; i < 9; i++)
 		{
 			for (int j = 0; j < 9; j++)
@@ -571,6 +458,126 @@ public class SudokuSolve
 				Console.WriteLine();
 			}
 		}
+	}
+
+/*
+easy:
+..6.5..4.
+....1.5.2
+.4.9..18.
+..45..8.1
+.5....76.
+.7.......
+9...6..2.
+38.7.....
+.....9...
+
+medium:
+1........
+...6.....
+.6.935...
+..234..6.
+3....1..2
+.......84
+.5..6....
+..1..2.9.
+8......71
+
+hard:
+.5..7..83
+..4....6.
+....5....
+83.6.....
+...9..1..
+.........
+5.7...4..
+...3.2...
+1........
+*/
+	// public static void Main(string[] args)
+	// {
+	// 	var board = SudokuSolver.GetBoard();
+
+	// 	if(!SudokuSolver.isValidSudoku(board)){
+	// 		Console.WriteLine("Invalid Sudoku:");
+	// 		SudokuSolver.printBoard(board);
+	// 		return;
+	// 	}
+
+	// 	var response = SudokuSolver.GetSolution(board);
+
+	// 	if(SudokuSolver.isSudokuSolution(response)){
+	// 		Console.WriteLine("Solution:");
+	// 		SudokuSolver.printBoard(response);
+	// 		Console.WriteLine(bruteCount);
+	// 	}
+	// 	else{
+	// 		Console.WriteLine("Bad Sudoku:");
+	// 		SudokuSolver.printBoard(board);
+	// 	}
+	// }
+
+	private static char[,] GetBoard()
+	{
+		var board = new char[9,9];
+		for(int i=0; i<9; i++){
+			var line = Console.ReadLine().ToArray();
+			for(int j=0; j<9; j++){
+				board[i,j] = line[j];
+			}
+		}
+
+		Console.WriteLine();
+		Console.WriteLine("Input:");
+		printBoard(board);
+		Console.WriteLine();
+
+		return board;
+
+		// // easy
+		// return new char[,] {
+		// 	{ '.','.','6', '.','5','.', '.','4','.' },
+		// 	{ '.','.','.', '.','1','.', '5','.','2' },
+		// 	{ '.','4','.', '9','.','.', '1','8','.' },
+
+		// 	{ '.','.','4', '5','.','.', '8','.','1' },
+		// 	{ '.','5','.', '.','.','.', '7','6','.' },
+		// 	{ '.','7','.', '.','.','.', '.','.','.' },
+
+		// 	{ '9','.','.', '.','6','.', '.','2','.' },
+		// 	{ '3','8','.', '7','.','.', '.','.','.' },
+		// 	{ '.','.','.', '.','.','9', '.','.','.' }
+		// };
+
+		// // medium
+		// return new char[,] {
+		// 	{ '1','.','.', '.','.','.', '.','.','.' },
+		// 	{ '.','.','.', '6','.','.', '.','.','.' },
+		// 	{ '.','6','.', '9','3','5', '.','.','.' },
+
+		// 	{ '.','.','2', '3','4','.', '.','6','.' },
+		// 	{ '3','.','.', '.','.','1', '.','.','2' },
+		// 	{ '.','.','.', '.','.','.', '.','8','4' },
+
+		// 	{ '.','5','.', '.','6','.', '.','.','.' },
+		// 	{ '.','.','1', '.','.','2', '.','9','.' },
+		// 	{ '8','.','.', '.','.','.', '.','7','1' }
+		// };
+
+		// // hard
+		// return new char[,] {
+		// 	{ '.','5','.', '.','7','.', '.','8','3' },
+		// 	{ '.','.','4', '.','.','.', '.','6','.' },
+		// 	{ '.','.','.', '.','5','.', '.','.','.' },
+
+		// 	{ '8','3','.', '6','.','.', '.','.','.' },
+		// 	{ '.','.','.', '9','.','.', '1','.','.' },
+		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+
+		// 	{ '5','.','7', '.','.','.', '4','.','.' },
+		// 	{ '.','.','.', '3','.','2', '.','.','.' },
+		// 	{ '1','.','.', '.','.','.', '.','.','.' }
+		// };
 	}
 
 }
