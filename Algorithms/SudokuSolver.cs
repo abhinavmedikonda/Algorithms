@@ -9,7 +9,7 @@ public class SudokuSolver
 {
 	static int bruteCount = 0;
 
-	private static char[,] GetSolution(char[,] board){
+	public static char[,] GetSolution(char[,] board){
 		var possibilities = CreatePossibilitiesMap();
 		for(int i=0; i<9; i++){
 			for(int j=0; j<9; j++){
@@ -424,7 +424,7 @@ public class SudokuSolver
 		printPossibilities(possibilities);
 	}
 
-	private static void printBoard(char[,] board){
+	public static void printBoard(char[,] board){
 		var count = 0;
 		for (int i = 0; i < 9; i++)
 		{
@@ -517,22 +517,22 @@ hard:
 	// 	}
 	// }
 
-	private static char[,] GetBoard()
+	public static char[,] GetBoard()
 	{
-		var board = new char[9,9];
-		for(int i=0; i<9; i++){
-			var line = Console.ReadLine().ToArray();
-			for(int j=0; j<9; j++){
-				board[i,j] = line[j];
-			}
-		}
+		// var board = new char[9,9];
+		// for(int i=0; i<9; i++){
+		// 	var line = Console.ReadLine().ToArray();
+		// 	for(int j=0; j<9; j++){
+		// 		board[i,j] = line[j];
+		// 	}
+		// }
 
-		Console.WriteLine();
-		Console.WriteLine("Input:");
-		printBoard(board);
-		Console.WriteLine();
+		// Console.WriteLine();
+		// Console.WriteLine("Input:");
+		// printBoard(board);
+		// Console.WriteLine();
 
-		return board;
+		// return board;
 
 		// // easy
 		// return new char[,] {
@@ -564,20 +564,20 @@ hard:
 		// 	{ '8','.','.', '.','.','.', '.','7','1' }
 		// };
 
-		// // hard
-		// return new char[,] {
-		// 	{ '.','5','.', '.','7','.', '.','8','3' },
-		// 	{ '.','.','4', '.','.','.', '.','6','.' },
-		// 	{ '.','.','.', '.','5','.', '.','.','.' },
+		// hard
+		return new char[,] {
+			{ '.','5','.', '.','7','.', '.','8','3' },
+			{ '.','.','4', '.','.','.', '.','6','.' },
+			{ '.','.','.', '.','5','.', '.','.','.' },
 
-		// 	{ '8','3','.', '6','.','.', '.','.','.' },
-		// 	{ '.','.','.', '9','.','.', '1','.','.' },
-		// 	{ '.','.','.', '.','.','.', '.','.','.' },
+			{ '8','3','.', '6','.','.', '.','.','.' },
+			{ '.','.','.', '9','.','.', '1','.','.' },
+			{ '.','.','.', '.','.','.', '.','.','.' },
 
-		// 	{ '5','.','7', '.','.','.', '4','.','.' },
-		// 	{ '.','.','.', '3','.','2', '.','.','.' },
-		// 	{ '1','.','.', '.','.','.', '.','.','.' }
-		// };
+			{ '5','.','7', '.','.','.', '4','.','.' },
+			{ '.','.','.', '3','.','2', '.','.','.' },
+			{ '1','.','.', '.','.','.', '.','.','.' }
+		};
 	}
 
 }
