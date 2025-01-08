@@ -41,8 +41,8 @@ public class Parallels
 		});
 	}
 
-	public static void Main(string[] args){
-        Start();
-	}
+	// public static void Main(string[] args){
+    //     Start();
+	// }
 
 }
