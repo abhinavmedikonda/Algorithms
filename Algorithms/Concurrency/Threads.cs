@@ -30,7 +30,7 @@ public class Threads
 		}
 	}
 
-	private static void Main(){
+	private static void Start(){
 		var n = 3;
         for(int i=0; i<n; i++){
 			Console.WriteLine($"main start: {i}");
@@ -57,7 +57,7 @@ public class Threads
 	}
 
 	// public static void Main(string[] args){
-    //     Main();
+    //     Start();
 	// }
 
 }
