@@ -68,7 +68,7 @@ public class Parallels
 		var s = "Executes a foreach (For Each in Visual Basic) operation in which iterations may run in parallel";
 		Console.WriteLine();
 		Parallel.ForEach(s, (c, loopState, l) => {
-			if(l == 3){
+			if(l == breakIndex){
 				loopState.Stop();
 			}
 
