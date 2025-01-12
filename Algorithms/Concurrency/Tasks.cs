@@ -19,7 +19,6 @@ public class Tasks
 		await Task.WhenAll(v12345, v6789);
         await Task.Delay(5000);
 		Console.WriteLine($"{st.Elapsed.Seconds}: {nameof(t123456789)}: {st.Elapsed.Seconds-start}seconds");
-		Console.Read();
 	}
 
 	private static async Task t12345(Stopwatch st){
@@ -43,6 +42,7 @@ public class Tasks
 
 	private static async Task t234(Stopwatch st){
 		Console.WriteLine($"{st.Elapsed.Seconds}: {nameof(t234)} start");
+		await Task.WhenAll(t2(st), t3(st), t4(st));
         await Task.Delay(5000);
 		Console.WriteLine($"{st.Elapsed.Seconds}: {nameof(t234)} done");
 	}
