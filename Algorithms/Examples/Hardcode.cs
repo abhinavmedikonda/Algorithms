@@ -7,7 +7,7 @@ namespace Algorithms.Examples;
 public class HardCode
 {
 
-	private static void Method(){
+	private static void Start(){
 		// Dictionary initialization
 		var lookup = new Dictionary<char, char>{{'(', ')'}, {'[', ']'}, {'{', '}'}};
 		var repeat = Enumerable.Repeat('1', 10);
@@ -24,7 +24,7 @@ public class HardCode
 	}
 
 	// public static void Main(string[] args){
-	//	 Method();
+	//	 Start();
 	// }
 
 }

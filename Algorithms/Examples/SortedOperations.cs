@@ -6,7 +6,7 @@ namespace Algorithms.Examples;
 
 public class SortedOperations
 {
-	private static void Method(){
+	private static void Start(){
 		var list = new List<int>{8, 5, 9};
 
 		// customize sortedList sort logic
@@ -36,6 +36,6 @@ public class SortedOperations
 	}
 
 	// public static void Main(string[] args){
-	// 	 Method();
+	// 	 Start();
 	// }
 }

@@ -6,7 +6,7 @@ namespace Algorithms.Examples;
 
 public class StringExamples
 {
-	private static void Method(){
+	private static void Start(){
 		var str = string.Concat(Enumerable.Repeat('1', 10)); //repeat a characger
 		Console.WriteLine(str);
 
@@ -22,6 +22,6 @@ public class StringExamples
 	}
 
 	// public static void Main(string[] args){
-	// 	 Method();
+	// 	 Start();
 	// }
 }

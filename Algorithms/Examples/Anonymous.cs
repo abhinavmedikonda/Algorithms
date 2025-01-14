@@ -8,7 +8,7 @@ namespace Algorithms.Examples;
 public class Anonymous
 {
 
-	private static void Method(){
+	private static void Start(){
 		var elements = new List<element>{new element{value = 7, index = 0}, new element{value = 4, index = 1}};
 		var test = elements.Where(x => x.value>10);
 
@@ -18,7 +18,7 @@ public class Anonymous
 	}
 
 	// public static void Main(string[] args){
-	//	 Method();
+	//	 Start();
 	// }
 
 }

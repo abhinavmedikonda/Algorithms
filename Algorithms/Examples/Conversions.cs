@@ -7,7 +7,7 @@ namespace Algorithms.Examples;
 
 public class Conversions
 {
-	private static void Method(){
+	private static void Start(){
 		string[] stringArray = Console.ReadLine().Split(' '); //string to array of strings
 		stringArray.ToList().ForEach(x => Console.WriteLine(x));
 
@@ -27,6 +27,6 @@ public class Conversions
 	}
 
 	// public static void Main(string[] args){
-	//	 Method();
+	//	 Start();
 	// }
 }

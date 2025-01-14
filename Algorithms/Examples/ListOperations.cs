@@ -7,7 +7,7 @@ namespace Algorithms.Examples;
 public class ListOperations
 {
 
-	private static void Method(){
+	private static void Start(){
 		var list = new List<int>{8, 5, 9};
 		list.AddRange(new List<int>{3, 7, 1}); //add list to existing list
 		var newList = list.Concat(new List<int>{3, 7, 1}); //to return new list
@@ -49,7 +49,7 @@ public class ListOperations
 	}
 
 	// public static void Main(string[] args){
-	// 	 Method();
+	// 	 Start();
 	// }
 
 }
