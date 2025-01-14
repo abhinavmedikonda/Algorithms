@@ -6,6 +6,7 @@ namespace Algorithms.Examples;
 
 public class ListOperations
 {
+
 	private static void Method(){
 		var list = new List<int>{8, 5, 9};
 		list.AddRange(new List<int>{3, 7, 1}); //add list to existing list
@@ -16,10 +17,39 @@ public class ListOperations
 		if(index >= 0) list.RemoveAt(index); //remove element at index
 		list.Clear(); //remove everything
 
-		Console.Read();
+		var elems1 = yield1();
+		foreach(var elem in elems1)
+		{
+			Console.WriteLine( "Got " + elem );
+		}
+
+		var elems2 = yield2();
+		foreach(var elem in elems2)
+		{
+			Console.WriteLine( "Got " + elem );
+		}
+	}
+
+	private static IEnumerable<int> yield1()
+	{
+		Console.WriteLine("Returning 1");
+		yield return 1;
+		Console.WriteLine("Returning 2");
+		yield return 2;
+		Console.WriteLine("Returning 3");
+		yield return 3;
+	}
+
+	private static IEnumerable<int> yield2()
+	{
+		for(int i=1; i<4; i++){
+			Console.WriteLine($"Returning {i}");
+			yield return i;
+		}
 	}
 
 	// public static void Main(string[] args){
-	//	 Method();
+	// 	 Method();
 	// }
+
 }
