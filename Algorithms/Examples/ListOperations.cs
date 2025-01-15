@@ -28,6 +28,12 @@ public class ListOperations
 		{
 			Console.WriteLine( "Got " + elem );
 		}
+
+		var elems3 = noYield();
+		foreach(var elem in elems3)
+		{
+			Console.WriteLine( "Got " + elem );
+		}
 	}
 
 	private static IEnumerable<int> yield1()
@@ -46,6 +52,17 @@ public class ListOperations
 			Console.WriteLine($"Returning {i}");
 			yield return i;
 		}
+	}
+
+	private static IEnumerable<int> noYield()
+	{
+		List<int> theReturn = new();
+		for(int i=1; i<4; i++){
+			Console.WriteLine($"Returning {i}");
+			theReturn.Add(i);
+		}
+
+		return theReturn;
 	}
 
 	// public static void Main(string[] args){
