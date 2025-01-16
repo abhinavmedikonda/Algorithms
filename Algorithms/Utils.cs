@@ -18,11 +18,18 @@ public static class Utils
         while(DateTime.Now < end){}
     }
 
-    public static async Task ComputeAsync(int milliSeconds){
+    public static async Task RandomComputeAsync(){
         await Task.Run(() => {
-            var end = DateTime.Now + TimeSpan.FromMicroseconds(milliSeconds);
+            var end = DateTime.Now.AddMilliseconds(random.Next(1, 10));
             while(DateTime.Now < end){}
         });
+    }
+
+    public static async Task ComputeAsync(int milliSeconds){
+        await Task.Factory.StartNew(() => {
+            var end = DateTime.Now + TimeSpan.FromMicroseconds(milliSeconds);
+            while(DateTime.Now < end){}
+        }, TaskCreationOptions.AttachedToParent);
     }
 
 }
