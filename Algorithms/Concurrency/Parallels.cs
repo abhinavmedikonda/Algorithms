@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,7 +7,7 @@ namespace Algorithms.Concurrency;
 public class Parallels
 {
 
-	private static async void Start(){
+	private static async Task Start(){
 		ParallelOptions parallelOptions = new();
 		parallelOptions.MaxDegreeOfParallelism = 15;
 		Console.WriteLine($"MaxDegreeOfParallelism: {parallelOptions.MaxDegreeOfParallelism}");
@@ -51,37 +48,53 @@ public class Parallels
             Console.WriteLine($"\nNo lowest break iteration.");
 
 		Console.WriteLine();
+		Console.WriteLine($"T: {Thread.CurrentThread.ManagedThreadId}");
+		Parallel.Invoke([
+			() => {
+				Console.WriteLine($"T1: {Thread.CurrentThread.ManagedThreadId}");
+				Utils.Compute(100);
+			},
+			() => {
+				Console.WriteLine($"T2: {Thread.CurrentThread.ManagedThreadId}");
+				Utils.RandomCompute();
+			}
+		]);
+
+		Console.WriteLine();
 		await Task.Run(() => { // Task.Run starts new thread
 			Parallel.For(0, 15, parallelOptions, (i, loopState) => {
-				if(i == 3){
+				if(i == breakIndex){
 					loopState.Break();
+					Console.WriteLine($"break iteration: {i}");
 				}
 
-				if(loopState.ShouldExitCurrentIteration){
-					Console.WriteLine("true");
+				if(loopState.ShouldExitCurrentIteration && loopState.LowestBreakIteration < i){
+					Console.WriteLine($"exit iteration: {i}");
+					return;
 				}
-				if(!loopState.ShouldExitCurrentIteration || loopState.LowestBreakIteration < i){
-					SudokuSolver.printBoard(SudokuSolver.GetSolution(SudokuSolver.GetBoard()));
-					Console.WriteLine(i);
-				}
+
+				SudokuSolver.printBoard(SudokuSolver.GetSolution(SudokuSolver.GetBoard()));
+				Console.WriteLine(i);
 			});
 		});
 
-		var s = "Executes a foreach (For Each in Visual Basic) operation in which iterations may run in parallel";
+		var s = "Parallel.ForEach executes a foreach operation in which iterations may run in parallel";
 		Console.WriteLine();
-		Parallel.ForEach(s, (c, loopState, l) => {
-			if(l == breakIndex){
-				loopState.Stop();
-			}
+		await Task.Run(() => {
+			Parallel.ForEach(s, (c, loopState, l) => {
+				if(l == breakIndex){
+					loopState.Stop();
+				}
 
-			if(!loopState.IsStopped){
-				Console.Write(c);
-			}
+				if(!loopState.IsStopped){
+					Console.Write(c);
+				}
+			});
 		});
 	}
 
-	// public static void Main(string[] args){
-    //     Start();
+	// public static async Task Main(string[] args){
+	// 	await Start();
 	// }
 
 }
