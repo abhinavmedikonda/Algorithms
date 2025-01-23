@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 
 namespace Algorithms.Tree;
 
 public class Height {
+
+	/// <summary>
+	/// BFS solution
+	/// </summary>
 	public static int getHeight(BTree root){
 		if(root == null){
 			return 0;
@@ -83,4 +86,5 @@ public class Height {
 
 	//	 Console.Read();
 	// }
+
 }
