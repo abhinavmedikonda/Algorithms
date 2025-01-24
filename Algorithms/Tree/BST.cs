@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Algorithms.Tree;
+namespace Algorithms.Trees;
 
 public class BST {
 	public static BTree getBST(List<int> theList){

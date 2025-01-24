@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Algorithms.Tree;
+namespace Algorithms.Trees;
 
 public class BTree{
 	public BTree left;

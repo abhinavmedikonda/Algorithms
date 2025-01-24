@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
 
-namespace Algorithms.Tree;
+namespace Algorithms.Trees;
 
 public class PreOrderTree {
 	// public static BTree fromArray(List<int> pre, List<char> isLeaf){

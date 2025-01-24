@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace Algorithms.Tree;
+namespace Algorithms.Trees;
 
 public class Height {
 
@@ -23,10 +23,6 @@ public class Height {
 		while(q.Count > 1){
 			var node = q.Dequeue();
 			if(node == null){
-				if(q.Peek() == null){
-					break;
-				}
-
 				result++;
 				q.Enqueue(null);
 				continue;
@@ -43,12 +39,15 @@ public class Height {
 		return result;
 	}
 
+	// /// <summary>
+	// /// DFS recursion
+	// /// </summary>
 	// public static int getHeight(BTree root){
-	//	 if(root == null){
-	//		 return 0;
-	//	 }
+	// 	 if(root == null){
+	// 		 return 0;
+	// 	 }
 		
-	//	 return getHeight(root, 0);
+	// 	 return getHeight(root, 0);
 	// }
 
 	// private static int getHeight(BTree root, int height){
@@ -72,19 +71,18 @@ public class Height {
 6
 3 5 2 7 4 6
 
-3
-2   5
-4   7
-	6
+BST:
+  3
+2    5
+    4   7
+	   6
 */
 
 	// public static void Main(string[] args){
-	//	 var n = int.Parse(Console.ReadLine());
-	//	 var input = Console.ReadLine().Split(' ').ToList().Select(x => int.Parse(x)).ToList();
+	// 	 var n = int.Parse(Console.ReadLine());
+	// 	 var input = Console.ReadLine().Split(' ').ToList().Select(x => int.Parse(x)).ToList();
 		
-	//	 Console.WriteLine(getHeight(BST.getBST(input)));
-
-	//	 Console.Read();
+	// 	 Console.WriteLine(getHeight(BST.getBST(input)));
 	// }
 
 }

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 
 
-namespace Algorithms.Tree;
+namespace Algorithms.Trees;
 
 public class LowestCommonAncestor {
 
@@ -31,6 +31,12 @@ public class LowestCommonAncestor {
 6
 3 5 2 7 4 6
 4 7
+
+BST:
+  3
+2    5
+    4   7
+	   6
 */
 
 	// public static void Main(string[] args){
