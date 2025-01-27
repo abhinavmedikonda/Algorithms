@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 
 namespace Algorithms.Graph;
@@ -38,10 +39,7 @@ public class MinimumMoves
             
             if(item.Item1==goalX && item.Item2==invLen-goalY){
                 item.Item3.Add(new(item.Item1, item.Item2));
-                foreach (var trace in item.Item3)
-                {
-                    Console.WriteLine($"{trace.Item1} {invLen-trace.Item2}");
-                }
+                printGrid(grid, item.Item3);
                 
                 return theReturn;
             }
@@ -97,6 +95,46 @@ public class MinimumMoves
         }
     }
 
+	private static void printGrid(List<string> grid, List<Tuple<int, int>> trace){
+		Console.WriteLine();
+		for(int i=1; i<trace.Count; i++){
+			if(trace[i].Item1 == trace[i-1].Item1){
+				var level = trace[i].Item1;
+				var min = Math.Min(trace[i].Item2, trace[i-1].Item2);
+				var max = Math.Max(trace[i].Item2, trace[i-1].Item2);
+				for(int j=min; j<=max; j++){
+					StringBuilder sb = new(grid[j]);
+					sb[level] = '*';
+					grid[j] = sb.ToString();
+				}
+			}
+			else{
+				var level = trace[i].Item2;
+				var min = Math.Min(trace[i].Item1, trace[i-1].Item1);
+				var max = Math.Max(trace[i].Item1, trace[i-1].Item1);
+				StringBuilder sb = new(grid[level]);
+				for(int j=min; j<=max; j++){
+					sb[j] = '*';
+				}
+
+				grid[level] = sb.ToString();
+			}
+		}
+
+		StringBuilder sbr = new(grid[trace[0].Item2]);
+		sbr[trace[0].Item1] = '0';
+		grid[trace[0].Item2] = sbr.ToString();
+		sbr = new(grid[trace.Last().Item2]);
+		sbr[trace.Last().Item1] = '1';
+		grid[trace.Last().Item2] = sbr.ToString();
+
+		foreach(var item in grid){
+			Console.WriteLine(item);
+		}
+
+		Console.WriteLine();
+	}
+
 	/*
 3
 .X.
@@ -124,9 +162,14 @@ X......X..
 2 0 0 0
 */
 
-    public static void Main(string[] args)
+    // public static void Main(string[] args)
+    // {
+    //     Start();
+    // }
+
+	public static void Start()
     {
-        int n = Convert.ToInt32(Console.ReadLine().Trim());
+		int n = Convert.ToInt32(Console.ReadLine().Trim());
 
         List<string> grid = new List<string>();
 
@@ -149,6 +192,6 @@ X......X..
         int result = MinimumMoves.minimumMoves(grid, startX, startY, goalX, goalY);
 
         Console.WriteLine(result);
-    }
+	}
 
 }
