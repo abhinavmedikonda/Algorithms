@@ -104,7 +104,7 @@ public class MinimumMoves
 				var max = Math.Max(trace[i].Item2, trace[i-1].Item2);
 				for(int j=min; j<=max; j++){
 					StringBuilder sb = new(grid[j]);
-					sb[level] = '*';
+					sb[level] = '|';
 					grid[j] = sb.ToString();
 				}
 			}
@@ -114,7 +114,7 @@ public class MinimumMoves
 				var max = Math.Max(trace[i].Item1, trace[i-1].Item1);
 				StringBuilder sb = new(grid[level]);
 				for(int j=min; j<=max; j++){
-					sb[j] = '*';
+					sb[j] = '-';
 				}
 
 				grid[level] = sb.ToString();
@@ -162,11 +162,6 @@ X......X..
 2 0 0 0
 */
 
-    // public static void Main(string[] args)
-    // {
-    //     Start();
-    // }
-
 	public static void Start()
     {
 		int n = Convert.ToInt32(Console.ReadLine().Trim());
@@ -193,5 +188,10 @@ X......X..
 
         Console.WriteLine(result);
 	}
+
+    // public static void Main(string[] args)
+    // {
+    //     Start();
+    // }
 
 }
