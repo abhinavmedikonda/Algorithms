@@ -9,6 +9,9 @@ namespace Algorithms.Graph;
 public class MinimumMoves
 {
 
+    /// <summary>
+    /// in a grid given coordinates find minimum straight moves between 2 points
+    /// </summary>
 	public static int minimumMoves(List<string> grid, int startX, int startY, int goalX, int goalY)
     {
         List<List<bool>> visited = new();
